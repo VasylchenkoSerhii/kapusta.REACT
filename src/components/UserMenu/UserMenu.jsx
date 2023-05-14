@@ -1,10 +1,17 @@
-import { Logout, UserName, Wripper } from './UserMenu.styled';
+import { Logout, UserIcon, Wripper, Exit, UserName } from './UserMenu.styled';
+import Sparite from '../../images/cabagge/sprite.svg';
 
 export default function UserMenu() {
   return (
     <Wripper>
-      <UserName>U</UserName>
-      <Logout type='button'></Logout>
+      <UserIcon>U</UserIcon>
+      <UserName>User Name</UserName>
+      <Exit type='button'>Exit</Exit>
+      <Logout type='button'>
+        <svg width={16} height={16}>
+          <use href={`${Sparite}#icon-logout`}></use>
+        </svg>
+      </Logout>
     </Wripper>
   );
 }
