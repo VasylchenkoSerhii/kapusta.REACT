@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   margin-left: 20px;
   margin-right: 20px;
 
@@ -27,11 +28,11 @@ export const LogoButton = styled(Link)`
   display: flex;
   align-items: center;
   width: 90px;
-  border: none;
+  border: ${p => p.theme.borders.none};
   background-color: transparent;
   cursor: pointer;
 `;
 
 export const Header = styled.header`
-  background-color: #ffffff;
+  background-color: ${p => p.theme.colors.white};
 `;
