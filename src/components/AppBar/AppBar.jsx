@@ -1,5 +1,5 @@
 import { Header, HeaderContainer, LogoButton, LogoIcon } from './AppBar.styled';
-import Sparite from '../../images/cabagge/sprite.svg';
+import Sprite from '../../images/cabagge/sprite.svg';
 import UserMenu from 'components/UserMenu/UserMenu';
 
 export default function AppBar() {
@@ -8,7 +8,7 @@ export default function AppBar() {
       <HeaderContainer>
         <LogoButton to='/'>
           <LogoIcon width={90} height={31}>
-            <use href={`${Sparite}#icon-logo`}></use>
+            <use href={`${Sprite}#icon-logo`}></use>
           </LogoIcon>
         </LogoButton>
         <UserMenu />
