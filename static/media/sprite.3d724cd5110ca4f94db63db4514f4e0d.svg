@@ -85,6 +85,16 @@
 <symbol id="back-arrow" viewBox="0 0 45 32">
 <path fill="#ff751d" d="M44 13.6h-34.008l8.592-8.616-3.384-3.384-14.4 14.4 14.4 14.4 3.384-3.384-8.592-8.616h34.008v-4.8z"></path>
 </symbol>
+<symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="bar_chart">
+    <g clip-path="url(#clip0_14_1499)">
+      <path d="M5 9.2H8V19H5V9.2ZM10.6 5H13.4V19H10.6V5ZM16.2 13H19V19H16.2V13Z" fill="#52555F"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_14_1499">
+        <rect width="24" height="24" fill="white"></rect>
+      </clipPath>
+    </defs>
+  </symbol>
 
     </defs>
 </svg>
