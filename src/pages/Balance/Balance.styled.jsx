@@ -40,16 +40,90 @@ export const ButtonTo = styled.button`
   background-color: transparent;
   margin-top: 16px;
   margin-left: 20px;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 10px;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1,2;
   align-items: center;
-  /* text-align: center; */
+  cursor: pointer;
   text-transform: uppercase;
-  color: #000000;
+  color: ${p => p.theme.colors.black};
 `
 export const Arrow = styled.svg`
   margin-right: 4px;
+`
+export const BlockReports = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 21px;
+`
+export const BlockBalance = styled.div`
+  display: block;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 32px;
+`
+
+export const Title = styled.h2`
+  padding-top: 8px;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: ${p => p.theme.lineHeights.heading};
+`
+
+export const Reports = styled.svg`
+  margin-left: 15px;
+`
+export const TitleBalance = styled.h2`
+  margin-bottom: 8px;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: ${p => p.theme.lineHeights.heading};
+`
+export const FormBalance = styled.form`
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  align-items: center;
+`
+
+export const InputBalance = styled.input`
+  width: 142px;
+  height: 44px;
+  outline: none;
+  text-align: end;
+  padding: 12px 16px 12px 19px;
+  background-color: transparent;
+  border-radius: 22px 0px 0px 22px;
+  border: 2px solid ${p => p.theme.colors.white};
+  &::placeholder {
+    color: ${p => p.theme.colors.black};
+    font-family: ${p => p.theme.fonts.body};
+    font-weight: ${p => p.theme.fontWeights.bold};
+    font-size: ${p => p.theme.fontSizes.s};
+    line-height: ${p => p.theme.lineHeights.heading};
+  }
+`
+export const ButtonBalance = styled.button`
+  width: 142px;
+  height: 44px;
+  border-radius: 0px 22px 22px 0px;
+  border: 2px solid ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.text};
+  background-color: transparent;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: ${p => p.theme.lineHeights.heading};
+  text-transform: uppercase;
+  &:active {
+    background-color: ${p => p.theme.colors.accent};
+    color:${p => p.theme.colors.white};
+    border-color: ${p => p.theme.colors.accent};
+  }
 `
