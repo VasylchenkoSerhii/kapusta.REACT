@@ -1,6 +1,6 @@
 import React from 'react'
 import Sprite from '../../images/sprite.svg';
-import { Arrow, ButtonTo, Hero, Section } from './Balance.styled'
+import { Arrow, BlockBalance, BlockReports, ButtonBalance, ButtonTo, FormBalance, Hero, InputBalance, Reports, Section, Title, TitleBalance } from './Balance.styled'
 
 export default function Balance() {
   return (
@@ -12,6 +12,23 @@ export default function Balance() {
           </Arrow>
           to transaction
         </ButtonTo>
+        <BlockReports>
+          <Title>
+            Reports
+          </Title>
+          <Reports width={24} height={24}>
+            <use xlinkHref={`${Sprite}#bar_chart`}></use>
+          </Reports>
+        </BlockReports>
+        <BlockBalance>
+          <TitleBalance>
+            Balance:
+          </TitleBalance>
+          <FormBalance>
+            <InputBalance placeholder="00.00 UAH" />
+            <ButtonBalance>Confirm</ButtonBalance>
+          </FormBalance>
+        </BlockBalance>
       </Hero>
     </Section>
   )
