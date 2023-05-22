@@ -32,6 +32,10 @@ export const Hero = styled.div`
   }
 `;
 
+export const Wripper = styled.div`
+  height: 514px;
+`;
+
 export const Title = styled.svg`
   width: 183px;
   height: 47px;
@@ -86,7 +90,7 @@ export const Cabagge = styled.svg`
 export const CabaggeBody = styled.svg`
   position: absolute;
   left: 35px;
-  bottom: 0px;
+  bottom: -370px;
   transform: scaleX(-1);
 
   @media screen and (min-width: 768px) {
