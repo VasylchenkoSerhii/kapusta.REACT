@@ -15,7 +15,7 @@ import {
 } from './AuthForm.styled';
 import Sprite from '../../images/cabagge/sprite.svg';
 import { useDispatch } from 'react-redux';
-import { register } from 'redux/auth/auth-operations';
+import { register, login } from 'redux/auth/auth-operations';
 
 export default function AuthForm() {
   const validationSchema = yup.object().shape({
@@ -39,6 +39,12 @@ export default function AuthForm() {
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     if (submitAction === 'register') {
       dispatch(register(values));
+      setSubmitting(false);
+      resetForm();
+      return;
+    }
+    if (submitAction === 'login') {
+      dispatch(login(values));
       setSubmitting(false);
       resetForm();
     }

@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register } from './auth-operations';
+import { login, register } from './auth-operations';
 
 export const initialState = {
   user: {
     email: '',
+    token: null,
   },
   isLoading: false,
   isLogin: false,
@@ -25,6 +26,20 @@ const authSlice = createSlice({
         state.message = 'Verify your email, please.';
       })
       .addCase(register.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isLogin = false;
+        state.message = payload;
+      })
+      .addCase(login.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(login.fulfilled, (state, { payload }) => {
+        state.user.email = payload.user.email;
+        state.user.token = payload.token;
+        state.isLogin = true;
+        state.isLoading = false;
+      })
+      .addCase(login.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isLogin = false;
         state.message = payload;
