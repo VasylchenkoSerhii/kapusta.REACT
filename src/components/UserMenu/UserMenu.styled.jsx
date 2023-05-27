@@ -17,6 +17,7 @@ export const UserIcon = styled.p`
   height: 32px;
   border-radius: ${p => p.theme.radii.round};
   font-weight: ${p => p.theme.fontWeights.bold};
+  text-transform: uppercase;
   background-color: #f5f6fa;
 `;
 
