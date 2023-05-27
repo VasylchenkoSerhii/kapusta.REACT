@@ -3,6 +3,7 @@ import bg from '../../images/cabagge/bg-main-mob.png';
 import bgTablet from '../../images/cabagge/bg-tablet-home.png';
 import bgDesc from '../../images/cabagge/bg-desc-home.png';
 import MessageBg from '../../images/message-bg.png';
+import { ImCalendar } from 'react-icons/im';
 
 export const Section = styled.section`
   /* position: absolute; */
@@ -74,7 +75,11 @@ export const BlockReports = styled.div`
   margin-top: 14px;
   @media screen and (min-width: 768px) {
     justify-content: flex-end;
-    margin-top: 24px;
+    margin-top: 18px;
+  }
+  @media screen and (min-width: 1200px) {
+    justify-content: flex-end;
+    margin-top: 28px;
   }
 `
 export const BlockBalance = styled.div`
@@ -85,10 +90,12 @@ export const BlockBalance = styled.div`
   margin-top: 32px;
   @media screen and (min-width: 768px) {
     display: flex;
+    margin-top: 24px;
     justify-content: flex-start;
     margin-right: 251px;
   }
   @media screen and (min-width: 1200px) {
+    margin-top: 40px;
     margin-right: 298px;
   }
 `
@@ -175,13 +182,14 @@ export const ButtonBalance = styled.button`
   }
 `
 export const Tooltip = styled.div`
-  position: relative;
+  position: absolute;
   text-align: center;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
   width: 289px;
   height: 190px;
+  z-index: 999;
   background-image: url(${MessageBg});
   background-position: center;
   background-size: 100% 163px 280px;
@@ -193,7 +201,7 @@ export const Tooltip = styled.div`
     margin-left: 110px;
   }
   @media screen and (min-width: 1200px) {
-    margin-left: auto;
+    margin-left: 450px;
   }
 `
 export const ImageBg = styled.img`
@@ -246,6 +254,23 @@ export const ButtonExp = styled.button`
     background-color: ${p => p.theme.colors.accent};
     color:${p => p.theme.colors.white};
   }
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    top: 144px;
+    left: 32px;
+    width: 138px;
+    height: 40px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: ${p => p.theme.colors.income};
+    &:active {
+    background-color: ${p => p.theme.colors.expenses};
+    color:${p => p.theme.colors.accent};
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    top: 92px;
+    left: 91px;
+  }
 `
 export const ButtonInc = styled.button`
   width: 50%;
@@ -265,4 +290,76 @@ export const ButtonInc = styled.button`
     background-color: ${p => p.theme.colors.accent};
     color:${p => p.theme.colors.white};
   }
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    top: 144px;
+    left: 170px;
+    width: 138px;
+    height: 40px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: ${p => p.theme.colors.income};
+    &:active {
+    background-color: ${p => p.theme.colors.expenses};
+    color:${p => p.theme.colors.accent};
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    top: 92px;
+    left: 229px;
+  }
+`
+export const BlockExpInc = styled.div`
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    width: 704px;
+    height: 616px;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    border-radius: 0px 30px 30px 30px ;
+    background-color: ${p => p.theme.colors.white};
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  }
+  @media screen and (min-width: 1200px) {
+    /* position: absolute; */
+    width: 1098px;
+    height: 579px;
+    margin-top: 48px;
+    border-radius: 0px 30px 30px 30px ;
+    background-color: ${p => p.theme.colors.white};
+  }
+`
+export const BalockCalendar = styled.div`
+  display: flex;
+  margin-top: 26px;
+  margin-left: 40px;
+  /* margin: 0; */
+  padding: 0;
+  width: 120px;
+`
+export const ButtonCalendar = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 44px;
+  width: 120px;
+  height: 40px;
+`
+export const CalendarImage = styled(ImCalendar)`
+  width: 20px;
+  height: 20px;
+  margin-right: 9px;
+`
+export const CalendarDate = styled.span`
+  margin-right: 0;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.big};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1,17;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: ${p => p.theme.colors.text};
+`
+export const ViewCalendar = styled.div`
+  position: absolute;
+  border-radius: 10px;
+  top: 60px;
 `

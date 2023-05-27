@@ -8,6 +8,8 @@ export const theme = {
     secondaryAccent: '#F6F7FB',
     Revenue: '#407946',
     Expenditure: '#E53935',
+    expenses: '#FEFEFE',
+    income: '#FAFBFD',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {
@@ -26,6 +28,7 @@ export const theme = {
     normal: 400,
     medium: 500,
     bold: 700,
+    big: 900,
   },
   lineHeights: {
     body: 1.5,
