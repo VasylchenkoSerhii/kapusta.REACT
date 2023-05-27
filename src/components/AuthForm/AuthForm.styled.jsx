@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Field, ErrorMessage } from 'formik';
+import { Field, ErrorMessage, Form } from 'formik';
 
-export const Form = styled.form`
+export const MainForm = styled(Form)`
   position: absolute;
   left: 20px;
   top: 255px;
