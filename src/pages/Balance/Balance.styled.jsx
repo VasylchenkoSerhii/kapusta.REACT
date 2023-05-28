@@ -4,6 +4,8 @@ import bgTablet from '../../images/cabagge/bg-tablet-home.png';
 import bgDesc from '../../images/cabagge/bg-desc-home.png';
 import MessageBg from '../../images/message-bg.png';
 import { ImCalendar } from 'react-icons/im';
+import { FaCalculator } from 'react-icons/fa';
+import { ErrorMessage, Field, Form } from 'formik';
 
 export const Section = styled.section`
   /* position: absolute; */
@@ -309,6 +311,7 @@ export const ButtonInc = styled.button`
   }
 `
 export const BlockExpInc = styled.div`
+  display: flex;
   @media screen and (min-width: 768px) {
     position: absolute;
     width: 704px;
@@ -341,7 +344,7 @@ export const ButtonCalendar = styled.div`
   align-items: center;
   margin-right: 44px;
   width: 120px;
-  height: 40px;
+  height: 46px;
 `
 export const CalendarImage = styled(ImCalendar)`
   width: 20px;
@@ -363,3 +366,83 @@ export const ViewCalendar = styled.div`
   border-radius: 10px;
   top: 60px;
 `
+export const BlockProduct = styled.div`
+  margin-top: 26px;
+  margin-left: 44px;
+`
+export const ProductForm = styled.div``
+export const MainForm = styled(Form)``
+export const ProductContainer = styled.div`
+  display: flex;
+  width: 480px;
+  height: 44px;
+  border: 2px solid ${p => p.theme.colors.background};;
+  border-radius: 16px 16px 16px 0px;
+`
+export const ProductInput = styled(Field)`
+  border: none;
+  height: 40px;
+  width: 160px;
+  margin-left: 20px;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1,17;
+  letter-spacing: 0.02em;
+`
+export const CategoryInput = styled(Field)`
+  width: 186px;
+  height: 40px;
+  padding-left: 20px;
+  padding-right: 60px;
+  border-top: none;
+  border-bottom: none;
+  border-left:2px solid ${p => p.theme.colors.background};
+  border-right:2px solid ${p => p.theme.colors.background};
+  border-radius: 0px;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1,17;
+  letter-spacing: 0.02em;
+`
+export const CategoryList = styled.ul``
+export const CalculatorContainer = styled.div`
+ display: flex;
+ align-items: center;
+`
+export const CalculateInput = styled(Field)`
+  margin-left: 20px;
+  text-align: center;
+  width: 60px;
+  height: 40px;
+  border: none;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1,17;
+  letter-spacing: 0.02em;
+`
+export const ViewCalculator = styled.div`
+  position: absolute;
+`
+
+export const CalculatorImage = styled(FaCalculator)`
+  width: 20px;
+  height: 20px;
+`
+export const Error = styled(ErrorMessage)`
+  position: absolute;
+  left: 42px;
+  padding-top: 5px;
+  font-size: ${p => p.theme.fontSizes.xs};
+  color: red;
+
+  @media screen and (min-width: 768px) {
+    left: 108px;
+    padding-top: 10px;
+    font-size: ${p => p.theme.fontSizes.s};
+  }
+`;
+export const InputBtn = styled.button``
+export const ClearBtn = styled.button``
