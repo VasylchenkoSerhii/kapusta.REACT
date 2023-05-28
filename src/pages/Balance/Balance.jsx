@@ -1,15 +1,20 @@
 import React from 'react'
 import Sprite from '../../images/sprite.svg';
-import { Arrow, BalockCalendar, BlockBalance,BlockExpInc,BlockHeader,BlockReports, ButtonBalance, ButtonCalendar, ButtonExp, ButtonInc, ButtonTo, CalendarDate, CalendarImage, FormBalance, Hero, ImageBg, InputBalance, Reports, Section, TextBg, Title, TitleBalance, TitleMessageBg, Tooltip, ViewCalendar } from './Balance.styled'
+import { Arrow, BalockCalendar, BlockBalance,BlockExpInc,BlockHeader,BlockProduct,BlockReports, ButtonBalance, ButtonCalendar, ButtonExp, ButtonInc, ButtonTo,CalculateInput, CalculatorContainer, CalculatorImage, CalendarDate, CalendarImage, CategoryInput, CategoryList, ClearBtn, Error, FormBalance, Hero, ImageBg, InputBalance, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Reports, Section, TextBg, Title, TitleBalance, TitleMessageBg, Tooltip, ViewCalculator, ViewCalendar } from './Balance.styled'
 import { useState } from 'react';
 import Calendar from 'react-calendar';
+import { Calculator } from 'react-mac-calculator';
 import 'react-calendar/dist/Calendar.css';
+import { Formik} from 'formik';
 
 export default function Balance() {
   const [value, setValue] = useState('');
   const [tooltipVisible, setTooltipVisible] = useState(true);
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isOpen, setIsOpen] = useState(false);
+  const [showCalculator, setShowCalculator] = useState(false);
+  const [numberValue, setNumberValue] = useState('');
 
   const handleCalendarToggle = () => {
     setShowCalendar(!showCalendar);
@@ -24,6 +29,41 @@ export default function Balance() {
     const inputValue = e.target.value;
     setValue(inputValue);
     setTooltipVisible(false); // Скрываем всплывающее сообщение при изменении значения
+  };
+
+  const initialValues = {
+    product: '',
+    category: '',
+    number: '',
+  };
+
+  const categories = ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
+
+  const handleSubmit = (values) => {
+    console.log(values.product);
+    console.log(values.category); // Обработка отправки формы
+    console.log(values.number);
+  };
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleCategorySelect = (category, setFieldValue) => {
+    setFieldValue('category', category);
+    toggleMenu();
+  };
+
+  const handleNumberInputChange = (e) => {
+    setNumberValue(e.target.value);
+  };
+
+  const handleToggleCalculator = () => {
+    setShowCalculator(!showCalculator);
+  };
+
+  const handleCalculatorResult = (result) => {
+    setNumberValue(result);
   };
 
   return (
@@ -81,6 +121,67 @@ export default function Balance() {
               </ViewCalendar>
             )}
           </BalockCalendar>
+          <BlockProduct>
+            <ProductForm>
+              <Formik
+                initialValues={initialValues}
+                onSubmit={handleSubmit}
+              >
+                {({ values, handleSubmit, handleChange, setFieldValue }) => (
+                <MainForm onSubmit={handleSubmit}>
+                  <ProductContainer>
+                  <ProductInput
+                    type="text"
+                    name='product'
+                    value={values.product}
+                    onChange={handleChange}
+                    placeholder='Product description'
+                  />
+                  <Error name='product' component='div' />
+
+                  <CategoryInput
+                    type="text"
+                    name="category"
+                    value={values.category}
+                    onClick={toggleMenu}
+                    placeholder="Product category"
+                  />
+                  <Error name='category' component='div' />
+                  <CategoryList>
+                    {isOpen && categories.map((category, index) => (
+                      <li key={index} onClick={() => handleCategorySelect(category, setFieldValue)}>
+                        {category}
+                      </li>
+                    ))}
+                  </CategoryList>
+                  <CalculatorContainer>
+                    <CalculateInput
+                      type="text"
+                      name="number"
+                      placeholder="0,00"
+                      value={values.number}
+                      onChange={handleChange}
+                    />
+                    <Error name='number' component='div' />
+                    <CalculatorImage onClick={handleToggleCalculator} />
+                  </CalculatorContainer>
+                  {showCalculator && (
+                    <ViewCalculator>
+                    <Calculator
+                      value={numberValue}
+                      onChange={handleNumberInputChange}
+                      onResult={handleCalculatorResult}
+                    />
+                    </ViewCalculator>
+                  )}
+                  </ProductContainer>
+                  <InputBtn type="submit">Input</InputBtn>
+                  <ClearBtn type="submit">Clear</ClearBtn>
+                  </MainForm>
+                )}
+              </Formik>
+            </ProductForm>
+          </BlockProduct>
         </BlockExpInc>
       </Hero>
     </Section>
