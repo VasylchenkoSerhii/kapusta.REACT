@@ -36,3 +36,12 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export const logOut = createAsyncThunk('auth/logout', async () => {
+  try {
+    await axios.get('/users/logout');
+    token.unset();
+  } catch (error) {
+    console.log(error.message);
+  }
+});
