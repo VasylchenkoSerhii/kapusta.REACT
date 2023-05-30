@@ -5,18 +5,6 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 20px;
-  margin-right: 20px;
-
-  @media screen and (min-width: 768px) {
-    margin-left: 32px;
-    margin-right: 32px;
-  }
-
-  @media screen and (min-width: 1200px) {
-    margin-left: 16px;
-    margin-right: 16px;
-  }
 `;
 
 export const LogoIcon = styled.svg`
@@ -35,4 +23,13 @@ export const LogoButton = styled(Link)`
 
 export const Header = styled.header`
   background-color: ${p => p.theme.colors.white};
+  padding: 0px 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0px 32px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding: 0px 16px;
+  }
 `;
