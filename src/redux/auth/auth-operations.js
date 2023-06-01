@@ -50,7 +50,6 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, { getState, rejectWithValue }) => {
     const persistedToken = getState().auth.token;
-    console.log(persistedToken);
     if (persistedToken === null) return rejectWithValue();
     token.set(persistedToken);
     try {

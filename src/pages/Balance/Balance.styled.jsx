@@ -50,7 +50,7 @@ export const ButtonTo = styled.button`
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.xs};
-  line-height: 1,2;
+  line-height: 1, 2;
   align-items: center;
   cursor: pointer;
   text-transform: uppercase;
@@ -58,17 +58,16 @@ export const ButtonTo = styled.button`
   @media screen and (min-width: 768px) {
     display: none;
   }
-`
+`;
 export const Arrow = styled.svg`
   margin-right: 4px;
-`
+`;
 export const BlockHeader = styled.div`
-@media screen and (min-width: 768px) {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+`;
 export const BlockReports = styled.div`
   display: flex;
   justify-content: center;
@@ -83,7 +82,7 @@ export const BlockReports = styled.div`
     justify-content: flex-end;
     margin-top: 28px;
   }
-`
+`;
 export const BlockBalance = styled.div`
   display: block;
   justify-content: center;
@@ -100,7 +99,7 @@ export const BlockBalance = styled.div`
     margin-top: 40px;
     margin-right: 298px;
   }
-`
+`;
 
 export const Title = styled.h2`
   padding-top: 8px;
@@ -108,11 +107,11 @@ export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.heading};
-`
+`;
 
 export const Reports = styled.svg`
   margin-left: 15px;
-`
+`;
 export const TitleBalance = styled.h2`
   margin-bottom: 8px;
   font-family: ${p => p.theme.fonts.body};
@@ -126,14 +125,14 @@ export const TitleBalance = styled.h2`
   @media screen and (min-width: 1200px) {
     margin-right: 26px;
   }
-`
+`;
 export const FormBalance = styled.form`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   padding: 0;
   align-items: center;
-`
+`;
 
 export const InputBalance = styled.input`
   width: 142px;
@@ -157,7 +156,7 @@ export const InputBalance = styled.input`
     padding: 12px 20px 12px 6px;
     border-radius: 16px;
   }
-`
+`;
 export const ButtonBalance = styled.button`
   width: 142px;
   height: 44px;
@@ -172,7 +171,7 @@ export const ButtonBalance = styled.button`
   text-transform: uppercase;
   &:active {
     background-color: ${p => p.theme.colors.accent};
-    color:${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.white};
     border-color: ${p => p.theme.colors.accent};
   }
   @media screen and (min-width: 768px) {
@@ -182,7 +181,7 @@ export const ButtonBalance = styled.button`
     border-radius: 16px;
     margin-left: 15px;
   }
-`
+`;
 export const Tooltip = styled.div`
   position: absolute;
   text-align: center;
@@ -205,12 +204,10 @@ export const Tooltip = styled.div`
   @media screen and (min-width: 1200px) {
     margin-left: 450px;
   }
-`
+`;
 export const ImageBg = styled.img`
-
-
   box-sizing: cover;
-`
+`;
 export const TitleMessageBg = styled.h2`
   /* position: absolute; */
   /* top: 50%;
@@ -222,17 +219,17 @@ export const TitleMessageBg = styled.h2`
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.m};
-  line-height: 1,42;
+  line-height: 1, 42;
   color: ${p => p.theme.colors.white};
-`
+`;
 export const TextBg = styled.h3`
   /* padding-top: 20px; */
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.s};
-  line-height: 1,34;
+  line-height: 1, 34;
   color: ${p => p.theme.colors.white};
-`
+`;
 // export const BlockButton = styled.div`
 //   display: flex;
 //   justify-content: flex-end;
@@ -247,14 +244,14 @@ export const ButtonExp = styled.button`
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.s};
-  line-height: 1,17;
+  line-height: 1, 17;
   text-transform: uppercase;
   border: none;
   color: ${p => p.theme.colors.black};
   background-color: ${p => p.theme.colors.background};
   &:active {
     background-color: ${p => p.theme.colors.accent};
-    color:${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.white};
   }
   @media screen and (min-width: 768px) {
     position: absolute;
@@ -265,15 +262,15 @@ export const ButtonExp = styled.button`
     border-radius: 20px 20px 0px 0px;
     background-color: ${p => p.theme.colors.income};
     &:active {
-    background-color: ${p => p.theme.colors.expenses};
-    color:${p => p.theme.colors.accent};
+      background-color: ${p => p.theme.colors.expenses};
+      color: ${p => p.theme.colors.accent};
     }
   }
   @media screen and (min-width: 1200px) {
     top: 92px;
     left: 91px;
   }
-`
+`;
 export const ButtonInc = styled.button`
   width: 50%;
   height: 53px;
@@ -283,14 +280,14 @@ export const ButtonInc = styled.button`
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.s};
-  line-height: 1,17;
+  line-height: 1, 17;
   text-transform: uppercase;
   border: none;
   color: ${p => p.theme.colors.black};
   background-color: ${p => p.theme.colors.background};
   &:active {
     background-color: ${p => p.theme.colors.accent};
-    color:${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.white};
   }
   @media screen and (min-width: 768px) {
     position: absolute;
@@ -301,15 +298,15 @@ export const ButtonInc = styled.button`
     border-radius: 20px 20px 0px 0px;
     background-color: ${p => p.theme.colors.income};
     &:active {
-    background-color: ${p => p.theme.colors.expenses};
-    color:${p => p.theme.colors.accent};
+      background-color: ${p => p.theme.colors.expenses};
+      color: ${p => p.theme.colors.accent};
     }
   }
   @media screen and (min-width: 1200px) {
     top: 92px;
     left: 229px;
   }
-`
+`;
 export const BlockExpInc = styled.div`
   display: flex;
   @media screen and (min-width: 768px) {
@@ -318,7 +315,7 @@ export const BlockExpInc = styled.div`
     height: 616px;
     margin-top: 100px;
     margin-bottom: 40px;
-    border-radius: 0px 30px 30px 30px ;
+    border-radius: 0px 30px 30px 30px;
     background-color: ${p => p.theme.colors.white};
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   }
@@ -327,10 +324,10 @@ export const BlockExpInc = styled.div`
     width: 1098px;
     height: 579px;
     margin-top: 48px;
-    border-radius: 0px 30px 30px 30px ;
+    border-radius: 0px 30px 30px 30px;
     background-color: ${p => p.theme.colors.white};
   }
-`
+`;
 export const BalockCalendar = styled.div`
   display: flex;
   margin-top: 26px;
@@ -338,47 +335,47 @@ export const BalockCalendar = styled.div`
   /* margin: 0; */
   padding: 0;
   width: 120px;
-`
+`;
 export const ButtonCalendar = styled.div`
   display: flex;
   align-items: center;
   margin-right: 44px;
   width: 120px;
   height: 46px;
-`
+`;
 export const CalendarImage = styled(ImCalendar)`
   width: 20px;
   height: 20px;
   margin-right: 9px;
-`
+`;
 export const CalendarDate = styled.span`
   margin-right: 0;
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.big};
   font-size: ${p => p.theme.fontSizes.s};
-  line-height: 1,17;
+  line-height: 1, 17;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: ${p => p.theme.colors.text};
-`
+`;
 export const ViewCalendar = styled.div`
   position: absolute;
   border-radius: 10px;
   top: 60px;
-`
+`;
 export const BlockProduct = styled.div`
   margin-top: 26px;
   margin-left: 44px;
-`
-export const ProductForm = styled.div``
-export const MainForm = styled(Form)``
+`;
+export const ProductForm = styled.div``;
+export const MainForm = styled(Form)``;
 export const ProductContainer = styled.div`
   display: flex;
   width: 480px;
   height: 44px;
-  border: 2px solid ${p => p.theme.colors.background};;
+  border: 2px solid ${p => p.theme.colors.background};
   border-radius: 16px 16px 16px 0px;
-`
+`;
 export const ProductInput = styled(Field)`
   border: none;
   height: 40px;
@@ -387,9 +384,9 @@ export const ProductInput = styled(Field)`
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.s};
-  line-height: 1,17;
+  line-height: 1, 17;
   letter-spacing: 0.02em;
-`
+`;
 export const CategoryInput = styled(Field)`
   width: 186px;
   height: 40px;
@@ -397,20 +394,20 @@ export const CategoryInput = styled(Field)`
   padding-right: 60px;
   border-top: none;
   border-bottom: none;
-  border-left:2px solid ${p => p.theme.colors.background};
-  border-right:2px solid ${p => p.theme.colors.background};
+  border-left: 2px solid ${p => p.theme.colors.background};
+  border-right: 2px solid ${p => p.theme.colors.background};
   border-radius: 0px;
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.s};
-  line-height: 1,17;
+  line-height: 1, 17;
   letter-spacing: 0.02em;
-`
-export const CategoryList = styled.ul``
+`;
+export const CategoryList = styled.ul``;
 export const CalculatorContainer = styled.div`
- display: flex;
- align-items: center;
-`
+  display: flex;
+  align-items: center;
+`;
 export const CalculateInput = styled(Field)`
   margin-left: 20px;
   text-align: center;
@@ -420,17 +417,17 @@ export const CalculateInput = styled(Field)`
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.s};
-  line-height: 1,17;
+  line-height: 1, 17;
   letter-spacing: 0.02em;
-`
+`;
 export const ViewCalculator = styled.div`
   position: absolute;
-`
+`;
 
 export const CalculatorImage = styled(FaCalculator)`
   width: 20px;
   height: 20px;
-`
+`;
 export const Error = styled(ErrorMessage)`
   position: absolute;
   left: 42px;
@@ -444,5 +441,5 @@ export const Error = styled(ErrorMessage)`
     font-size: ${p => p.theme.fontSizes.s};
   }
 `;
-export const InputBtn = styled.button``
-export const ClearBtn = styled.button``
+export const InputBtn = styled.button``;
+export const ClearBtn = styled.button``;
