@@ -2,10 +2,10 @@ import { useSelector } from 'react-redux';
 import { Header, HeaderContainer, LogoButton, LogoIcon } from './AppBar.styled';
 import Sprite from '../../images/cabagge/sprite.svg';
 import UserMenu from 'components/UserMenu/UserMenu';
-import { getIsLogin } from 'redux/auth/auth-selector';
+import { getIsLoggedIn } from 'redux/auth/auth-selector';
 
 export default function AppBar() {
-  const isLogin = useSelector(getIsLogin);
+  const isLogin = useSelector(getIsLoggedIn);
   return (
     <Header>
       <HeaderContainer>
