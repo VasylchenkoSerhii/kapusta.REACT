@@ -1,6 +1,6 @@
 import React from 'react'
 import Sprite from '../../images/sprite.svg';
-import { Arrow, BalockCalendar, BlockBalance,BlockExpInc,BlockHeader,BlockProduct,BlockReports, ButtonBalance, ButtonCalendar, ButtonExp, ButtonInc, ButtonTo,CalculateInput, CalculatorContainer, CalculatorImage, CalendarDate, CalendarImage, CategoryInput, CategoryList, ClearBtn, Error, FormBalance, Hero, ImageBg, InputBalance, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Reports, Section, TextBg, Title, TitleBalance, TitleMessageBg, Tooltip, ViewCalculator, ViewCalendar } from './Balance.styled'
+import { Arrow, BalockCalendar, BlockBalance,BlockExpInc,BlockHeader,BlockProduct,BlockReports, ButtonBalance, ButtonCalendar, ButtonContainer, ButtonExp, ButtonInc, ButtonTo,CalculateInput, CalculatorContainer, CalculatorImage, CalendarDate, CalendarImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, FormBalance, Hero, ImageBg, InputBalance, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Reports, Section, TextBg, Title, TitleBalance, TitleMessageBg, Tooltip, ViewCalculator, ViewCalendar } from './Balance.styled'
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import { Calculator } from 'react-mac-calculator';
@@ -15,6 +15,7 @@ export default function Balance() {
   const [isOpen, setIsOpen] = useState(false);
   const [showCalculator, setShowCalculator] = useState(false);
   const [numberValue, setNumberValue] = useState('');
+  const [isRotated, setIsRotated] = useState(false);
 
   const handleCalendarToggle = () => {
     setShowCalendar(!showCalendar);
@@ -64,6 +65,10 @@ export default function Balance() {
 
   const handleCalculatorResult = (result) => {
     setNumberValue(result);
+  };
+
+  const handleIconClick = () => {
+    setIsRotated(!isRotated);
   };
 
   return (
@@ -138,7 +143,7 @@ export default function Balance() {
                     placeholder='Product description'
                   />
                   <Error name='product' component='div' />
-
+                  <CategoryContainer>
                   <CategoryInput
                     type="text"
                     name="category"
@@ -147,13 +152,19 @@ export default function Balance() {
                     placeholder="Product category"
                   />
                   <Error name='category' component='div' />
+                  {isRotated ? (
+                  <CategoryImageUp onClick={() => { toggleMenu(); handleIconClick()}}/>
+                  ) : (
+                  <CategoryImageDown onClick={() => { toggleMenu(); handleIconClick()}}/>
+                  )}
                   <CategoryList>
                     {isOpen && categories.map((category, index) => (
-                      <li key={index} onClick={() => handleCategorySelect(category, setFieldValue)}>
+                      <CategoryItem key={index} onClick={() => handleCategorySelect(category, setFieldValue)}>
                         {category}
-                      </li>
+                      </CategoryItem>
                     ))}
                   </CategoryList>
+                  </CategoryContainer>
                   <CalculatorContainer>
                     <CalculateInput
                       type="text"
@@ -175,8 +186,10 @@ export default function Balance() {
                     </ViewCalculator>
                   )}
                   </ProductContainer>
-                  <InputBtn type="submit">Input</InputBtn>
-                  <ClearBtn type="submit">Clear</ClearBtn>
+                  <ButtonContainer>
+                    <InputBtn type="submit">Input</InputBtn>
+                    <ClearBtn type="submit">Clear</ClearBtn>
+                  </ButtonContainer>
                   </MainForm>
                 )}
               </Formik>
