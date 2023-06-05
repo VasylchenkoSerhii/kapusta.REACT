@@ -5,7 +5,21 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 import { Calculator } from 'react-mac-calculator';
 import 'react-calendar/dist/Calendar.css';
-import { Formik} from 'formik';
+import { Formik } from 'formik';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
+const defaultMaskOptions = {
+  prefix: '',
+  suffix: ' UAH',
+  includeThousandsSeparator: true,
+  thousandsSeparatorSymbol: '',
+  allowDecimal: true,
+  decimalSymbol: '.',
+  decimalLimit: 2, // how many digits allowed after the decimal
+  integerLimit: 7, // limit length of integer numbers
+  allowNegative: false,
+  allowLeadingZeroes: true,
+};
 
 export default function Balance() {
   const [value, setValue] = useState('');
@@ -40,10 +54,11 @@ export default function Balance() {
 
   const categories = ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, { resetForm }) => {
     console.log(values.product);
     console.log(values.category); // Обработка отправки формы
     console.log(values.number);
+    resetForm();
   };
 
   const toggleMenu = () => {
@@ -71,6 +86,9 @@ export default function Balance() {
     setIsRotated(!isRotated);
   };
 
+  const currencyMask = createNumberMask({
+    ...defaultMaskOptions,
+  })
   return (
     <Section>
       <Hero>
@@ -95,6 +113,7 @@ export default function Balance() {
           </TitleBalance>
           <FormBalance>
             <InputBalance
+              mask={currencyMask}
               placeholder="00.00 UAH"
               value={value}
               onChange={handleInputChange}
@@ -188,7 +207,7 @@ export default function Balance() {
                   </ProductContainer>
                   <ButtonContainer>
                     <InputBtn type="submit">Input</InputBtn>
-                    <ClearBtn type="submit">Clear</ClearBtn>
+                    <ClearBtn type="reset">Clear</ClearBtn>
                   </ButtonContainer>
                   </MainForm>
                 )}
