@@ -3,6 +3,7 @@ import bg from '../../images/cabagge/bg-main-mob.png';
 import bgTablet from '../../images/cabagge/bg-tablet-home.png';
 import bgDesc from '../../images/cabagge/bg-desc-home.png';
 import MessageBg from '../../images/message-bg.png';
+import MaskedInput from 'react-text-mask';
 import { ImCalendar } from 'react-icons/im';
 import { FaCalculator } from 'react-icons/fa';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
@@ -135,7 +136,7 @@ export const FormBalance = styled.form`
   align-items: center;
 `;
 
-export const InputBalance = styled.input`
+export const InputBalance = styled(MaskedInput)`
   width: 142px;
   height: 44px;
   outline: none;
@@ -187,8 +188,8 @@ export const Tooltip = styled.div`
   position: absolute;
   text-align: center;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 50px;
+  /* margin-right: auto; */
   width: 289px;
   height: 190px;
   z-index: 999;
@@ -331,11 +332,18 @@ export const BlockExpInc = styled.div`
 `;
 export const BalockCalendar = styled.div`
   display: flex;
-  margin-top: 26px;
-  margin-left: 40px;
-  /* margin: 0; */
-  padding: 0;
-  width: 100px;
+  justify-content: center;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: 768px) {
+    margin-top: 26px;
+    margin-left: 40px;
+    margin-right: 0px;
+    /* margin: 0; */
+    padding: 0;
+    width: 100px;
+  }
   @media screen and (min-width: 1200px) {
     margin-left: 32px;
   }
@@ -364,10 +372,15 @@ export const ViewCalendar = styled.div`
   position: absolute;
   border-radius: 10px;
   top: 60px;
+  z-index: 999;
 `;
 export const BlockProduct = styled.div`
-  margin-top: 26px;
-  margin-left: 44px;
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    margin-top: 26px;
+    margin-left: 44px;
+  }
   @media screen and (min-width: 1200px) {
     margin-left: 32px;
   }
@@ -406,6 +419,7 @@ export const ProductInput = styled(Field)`
   font-size: ${p => p.theme.fontSizes.s};
   line-height: 1, 17;
   letter-spacing: 0.02em;
+  background-color: ${p => p.theme.colors.white};
   @media screen and (min-width: 1200px) {
     width: 290px;
   }
