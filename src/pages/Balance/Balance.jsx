@@ -1,12 +1,13 @@
 import React from 'react'
 import Sprite from '../../images/sprite.svg';
-import { Arrow, BalockCalendar, BlockBalance,BlockExpInc,BlockHeader,BlockProduct,BlockReports, ButtonBalance, ButtonCalendar, ButtonContainer, ButtonExp, ButtonInc, ButtonTo,CalculateInput, CalculatorContainer, CalculatorImage, CalendarDate, CalendarImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, FormBalance, Hero, ImageBg, InputBalance, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Reports, Section, TextBg, Title, TitleBalance, TitleMessageBg, Tooltip, ViewCalculator, ViewCalendar } from './Balance.styled'
+import { BalockCalendar, BlockBalance,BlockExpInc,BlockHeader,BlockProduct,BlockReports, ButtonBalance, ButtonCalendar, ButtonContainer, ButtonExp, ButtonInc,CalculateInput, CalculatorContainer, CalculatorImage, CalendarDate, CalendarImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, FormBalance, Hero, ImageBg, InputBalance, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Reports, Section, TextBg, Title, TitleBalance, TitleMessageBg, Tooltip, ViewCalculator, ViewCalendar } from './Balance.styled'
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import { Calculator } from 'react-mac-calculator';
 import 'react-calendar/dist/Calendar.css';
 import { Formik } from 'formik';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import { ToTransaction } from 'components/ToTransaction/ToTransaction';
 
 const defaultMaskOptions = {
   prefix: '',
@@ -92,12 +93,13 @@ export default function Balance() {
   return (
     <Section>
       <Hero>
-        <ButtonTo>
+        <ToTransaction />
+        {/* <ButtonTo>
           <Arrow width={18} height={18}>
             <use xlinkHref={`${Sprite}#back-arrow`}></use>
           </Arrow>
           to transaction
-        </ButtonTo>
+        </ButtonTo> */}
         <BlockHeader>
         <BlockReports>
           <Title>
