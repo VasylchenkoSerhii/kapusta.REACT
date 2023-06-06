@@ -5,6 +5,8 @@ import Home from 'pages/Home/Home';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshUser } from 'redux/auth/auth-operations';
+import RestrictedRoute from 'components/RestrictedRoute/RestrictedRoute';
+import PrivateRoute from 'components/PrivateRoute/PrevateRoute';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -16,8 +18,14 @@ export default function App() {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path='/balanse' element={<Balance />} />
+        <Route
+          index
+          element={<RestrictedRoute component={Home} redirectTo='/balance' />}
+        />
+        <Route
+          path='/balance'
+          element={<PrivateRoute component={Balance} redirectTo='/' />}
+        />
       </Route>
     </Routes>
   );
