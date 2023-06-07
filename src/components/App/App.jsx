@@ -8,6 +8,7 @@ import { refreshUser } from 'redux/auth/auth-operations';
 import { MobileProductPage } from 'components/MobileProductPage/MobileProductPage';
 import RestrictedRoute from 'components/RestrictedRoute/RestrictedRoute';
 import PrivateRoute from 'components/PrivateRoute/PrevateRoute';
+import Reports from 'pages/Reports/Reports';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -27,7 +28,8 @@ export default function App() {
           path='/balance'
           element={<PrivateRoute component={Balance} redirectTo='/' />}
         />
-        <Route path="/mobile-product-page" element={<MobileProductPage />} />
+        <Route path='/mobile-product-page' element={<MobileProductPage />} />
+        <Route path='/reports' element={<Reports />} />
       </Route>
     </Routes>
   );
