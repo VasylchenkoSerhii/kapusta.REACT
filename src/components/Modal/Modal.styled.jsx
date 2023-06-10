@@ -17,6 +17,6 @@ export const CloseBtn = styled.button``;
 
 export const ModalQuestion = styled.p``;
 
-export const WripperBtn = styled.div``;
+export const WrapperBtn = styled.div``;
 
 export const ModalBtn = styled.button``;

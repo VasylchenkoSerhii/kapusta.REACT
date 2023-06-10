@@ -5,7 +5,7 @@ import {
   ModalBtn,
   ModalQuestion,
   Overlay,
-  WripperBtn,
+  WrapperBtn,
 } from './Modal.styled';
 
 const modalRoot = document.getElementById('modal-root');
@@ -28,14 +28,14 @@ export default function Modal({ onConfirm, text, onClose }) {
     <Overlay>
       <CloseBtn onClick={onClose} type='button'></CloseBtn>
       <ModalQuestion>{text}</ModalQuestion>
-      <WripperBtn>
+      <WrapperBtn>
         <ModalBtn onClick={onConfirm} type='button'>
           Yes
         </ModalBtn>
         <ModalBtn onClick={onClose} type='button'>
           No
         </ModalBtn>
-      </WripperBtn>
+      </WrapperBtn>
     </Overlay>,
     modalRoot
   );

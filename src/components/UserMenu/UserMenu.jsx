@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/auth-operations';
-import { Logout, UserIcon, Wripper, Exit, UserName } from './UserMenu.styled';
+import { Logout, UserIcon, Wrapper, Exit, UserName } from './UserMenu.styled';
 import Sprite from '../../images/cabagge/sprite.svg';
 import { getUserName } from 'redux/auth/auth-selector';
 import Modal from 'components/Modal/Modal';
@@ -22,7 +22,7 @@ export default function UserMenu() {
 
   return (
     <>
-      <Wripper>
+      <Wrapper>
         <UserIcon>{userName.charAt(0)}</UserIcon>
         <UserName>User Name</UserName>
         <Exit type='button' onClick={() => toggleModal()}>
@@ -33,7 +33,7 @@ export default function UserMenu() {
             <use href={`${Sprite}#icon-logout`}></use>
           </svg>
         </Logout>
-      </Wripper>
+      </Wrapper>
       {isModalOpen && (
         <Modal
           onConfirm={out}
