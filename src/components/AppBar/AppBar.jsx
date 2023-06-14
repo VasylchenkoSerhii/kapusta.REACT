@@ -6,6 +6,7 @@ import { getIsLoggedIn } from 'redux/auth/auth-selector';
 
 export default function AppBar() {
   const isLogin = useSelector(getIsLoggedIn);
+
   return (
     <Header>
       <HeaderContainer>

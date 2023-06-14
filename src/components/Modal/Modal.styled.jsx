@@ -13,10 +13,80 @@ export const Overlay = styled.div`
   z-index: 1200;
 `;
 
-export const CloseBtn = styled.button``;
+export const Wripper = styled.div`
+  position: relative;
+  min-width: 250px;
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  background-color: white;
+  box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+  border-radius: 30px;
 
-export const ModalQuestion = styled.p``;
+  @media screen and (min-width: 1200px) {
+    min-width: 350px;
+    height: 150px;
+    padding-top: 40px;
+  }
+`;
 
-export const WrapperBtn = styled.div``;
+export const CloseBtn = styled.button`
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
 
-export const ModalBtn = styled.button``;
+export const ModalQuestion = styled.p`
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: ${p => p.theme.fontSizes.s};
+
+  @media screen and (min-width: 1200px) {
+    font-size: ${p => p.theme.fontSizes.m};
+  }
+`;
+
+export const WrapperBtn = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 215px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 1200px) {
+    width: 260px;
+  }
+`;
+
+export const ModalBtn = styled.button`
+  min-width: 100px;
+  height: 35px;
+  padding: 12px 14px;
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1.15;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  text-transform: uppercase;
+  border: ${p => p.theme.borders.none};
+  border-radius: 16px;
+  color: ${p => p.theme.colors.text};
+  background-color: ${p => p.theme.colors.secondaryAccent};
+  filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
+  cursor: pointer;
+
+  transition: background-color 250ms linear, color 250ms linear;
+
+  &:hover,
+  &:focus {
+    background-color: ${p => p.theme.colors.accent};
+    color: #ffffff;
+  }
+
+  @media screen and (min-width: 1200px) {
+    min-width: 120px;
+    height: 40px;
+  }
+`;

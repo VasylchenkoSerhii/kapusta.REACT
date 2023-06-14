@@ -152,6 +152,9 @@ export const MainBtn = styled.button`
   color: ${p => p.theme.colors.text};
   background-color: ${p => p.theme.colors.secondaryAccent};
   filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
+  cursor: pointer;
+
+  transition: background-color 250ms linear, color 250ms linear;
 
   &:hover,
   &:focus {
