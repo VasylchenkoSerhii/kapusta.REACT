@@ -1,30 +1,14 @@
 import React from 'react'
-import Sprite from '../../images/sprite.svg';
-import { BalockCalendar, BlockBalance,BlockExpInc,BlockHeader,BlockProduct,BlockReports, ButtonBalance, ButtonCalendar, ButtonContainer, ButtonExp, ButtonInc,CalculateInput, CalculatorContainer, CalculatorImage, CalendarDate, CalendarImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, FormBalance, Hero, ImageBg, InputBalance, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Reports, Section, TextBg, Title, TitleBalance, TitleMessageBg, Tooltip, ViewCalculator, ViewCalendar } from './Balance.styled'
+import { BalockCalendar,BlockExpInc,BlockProduct,ButtonCalendar, ButtonContainer, ButtonExp, ButtonInc,CalculateInput, CalculatorContainer, CalculatorImage, CalendarDate, CalendarImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, Hero, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Section,ViewCalculator, ViewCalendar } from './Balance.styled'
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import { Calculator } from 'react-mac-calculator';
 import 'react-calendar/dist/Calendar.css';
 import { Formik } from 'formik';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
-
-const defaultMaskOptions = {
-  prefix: '',
-  suffix: ' UAH',
-  includeThousandsSeparator: true,
-  thousandsSeparatorSymbol: '',
-  allowDecimal: true,
-  decimalSymbol: '.',
-  decimalLimit: 2, // how many digits allowed after the decimal
-  integerLimit: 7, // limit length of integer numbers
-  allowNegative: false,
-  allowLeadingZeroes: true,
-};
+import ReportsBalanceBlock from 'components/ReportsBalanceBlock/ReportsBalanceBlock';
 
 export default function Balance() {
-  const [value, setValue] = useState('');
-  const [tooltipVisible, setTooltipVisible] = useState(true);
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
@@ -39,12 +23,6 @@ export default function Balance() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setShowCalendar(false);
-  };
-
-  const handleInputChange = (e) => {
-    const inputValue = e.target.value;
-    setValue(inputValue);
-    setTooltipVisible(false); // Скрываем всплывающее сообщение при изменении значения
   };
 
   const initialValues = {
@@ -87,50 +65,11 @@ export default function Balance() {
     setIsRotated(!isRotated);
   };
 
-  const currencyMask = createNumberMask({
-    ...defaultMaskOptions,
-  })
   return (
     <Section>
       <Hero>
         <ToTransaction />
-        {/* <ButtonTo>
-          <Arrow width={18} height={18}>
-            <use xlinkHref={`${Sprite}#back-arrow`}></use>
-          </Arrow>
-          to transaction
-        </ButtonTo> */}
-        <BlockHeader>
-        <BlockReports>
-          <Title>
-            Reports
-          </Title>
-          <Reports width={24} height={24}>
-            <use xlinkHref={`${Sprite}#bar_chart`}></use>
-          </Reports>
-        </BlockReports>
-        <BlockBalance>
-          <TitleBalance>
-            Balance:
-          </TitleBalance>
-          <FormBalance>
-            <InputBalance
-              mask={currencyMask}
-              placeholder="00.00 UAH"
-              value={value}
-              onChange={handleInputChange}
-              onFocus={() => setTooltipVisible(true)}
-              onBlur={() => setTooltipVisible(false)}
-            />
-            <ButtonBalance>Confirm</ButtonBalance>
-          </FormBalance>
-        </BlockBalance>
-        </BlockHeader>
-        <Tooltip show={tooltipVisible}>
-            <ImageBg />
-            <TitleMessageBg>Hello! To get started, enter the<br />current balance of your account!<br /></TitleMessageBg>
-            <TextBg>You can't spend money until you have it :)</TextBg>
-        </Tooltip>
+        <ReportsBalanceBlock />
         {/* <BlockButton> */}
           <ButtonExp>Expenses</ButtonExp>
           <ButtonInc>Income</ButtonInc>

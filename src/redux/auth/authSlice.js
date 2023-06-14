@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logOut, login, refreshUser, register } from './auth-operations';
+import { logOut, login, refreshUser, register, setBalance } from './auth-operations';
 
 export const initialState = {
   user: {
     email: '',
+    balance: 'null',
   },
   token: null,
   isRefreshing: false,
@@ -15,7 +16,11 @@ export const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    changeBalance(state, { payload }) {
+      state.user.balance = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(register.pending, state => {
@@ -61,8 +66,12 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(setBalance.fulfilled, (state, {payload: {newUserBalance}}) => {
+        state.user.balance = newUserBalance;
       });
   },
 });
 
 export const authReducer = authSlice.reducer;
+export const { changeBalance } = authSlice.actions;
