@@ -1,21 +1,37 @@
-import React from 'react';
+import Categories from 'components/Categories/Categories';
+import Sprite from '../../images/currentPeriod.svg';
 import { Link } from 'react-router-dom';
+import {
+  Main,
+  Period,
+  PeriodBtn,
+  PeriodContainer,
+  Subheading,
+} from './Reports.styled';
 
 export default function Reports() {
   return (
-    <main>
-      <Link></Link>
+    <Main>
       <section>
+        <Link></Link>
         <div>
-          <p>Current period:</p>
-          <div>
-            <button type='button'></button>
-            <span>November 2019</span>
-            <button type='button'></button>
-          </div>
+          <Subheading>Current period:</Subheading>
+          <PeriodContainer>
+            <PeriodBtn type='button'>
+              <svg width={6} height={15}>
+                <use href={`${Sprite}#icon-arrow-left`}></use>
+              </svg>
+            </PeriodBtn>
+            <Period>November 2019</Period>
+            <PeriodBtn type='button'>
+              <svg width={6} height={15}>
+                <use href={`${Sprite}#icon-arrow-right`}></use>
+              </svg>
+            </PeriodBtn>
+          </PeriodContainer>
         </div>
         <div>
-          <span>Balance:</span>
+          <Subheading>Balance:</Subheading>
           <span>55 000.00 UAH</span>
         </div>
         <ul>
@@ -35,7 +51,8 @@ export default function Reports() {
           <span>Expenses</span>
           <button type='button'></button>
         </div>
+        <Categories />
       </section>
-    </main>
+    </Main>
   );
 }
