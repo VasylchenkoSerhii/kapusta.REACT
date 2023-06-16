@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import MaskedInput from 'react-text-mask';
 import MessageBg from '../../../images/message-bg.png';
+import { Field, Form } from "formik";
 
 export const Container = styled.div`
   display: block;
@@ -38,7 +38,7 @@ export const TitleBalance = styled.h2`
     margin-right: 26px;
   }
 `;
-export const FormBalance = styled.form`
+export const FormBalance = styled(Form)`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -46,7 +46,7 @@ export const FormBalance = styled.form`
   align-items: center;
 `;
 
-export const InputBalance = styled(MaskedInput)`
+export const InputBalance = styled(Field)`
   width: 142px;
   height: 44px;
   outline: none;

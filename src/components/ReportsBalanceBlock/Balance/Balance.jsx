@@ -1,50 +1,57 @@
 import { useState } from "react";
 import { BlockBalance, ButtonBalance, Container, FormBalance, ImageBg, InputBalance, TextBg, TitleBalance, TitleMessageBg, Tooltip } from "./Balance.styled";
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-
-const defaultMaskOptions = {
-  prefix: '',
-  suffix: ' UAH',
-  includeThousandsSeparator: true,
-  thousandsSeparatorSymbol: '',
-  allowDecimal: true,
-  decimalSymbol: '.',
-  decimalLimit: 2, // how many digits allowed after the decimal
-  integerLimit: 7, // limit length of integer numbers
-  allowNegative: false,
-  allowLeadingZeroes: true,
-};
+import { useDispatch, useSelector } from "react-redux";
+import { getBalance } from "redux/auth/auth-selector";
+import { setBalance } from "redux/auth/auth-operations";
+import { Formik } from "formik";
+import CurrencyInput from "shared/CurrencyInput/CurrencyInput";
 
 export default function Balance() {
-  const [value, setValue] = useState('');
+  const dispatch = useDispatch();
+  const balanceRedux = useSelector(getBalance);
+  // const [isSent, setIsSent] = useState(false);
+
+  const initialValues = {
+    balance: balanceRedux ?? '00.00',
+  };
+
+  const handleSubmit = async (values) => {
+    await dispatch(setBalance({ balance: values.balance }));
+    console.log(values.balance)
+    // setIsSent(true);
+  };
+
   const [tooltipVisible, setTooltipVisible] = useState(true);
 
   const handleInputChange = (e) => {
-    const inputValue = e.target.value;
-    setValue(inputValue);
     setTooltipVisible(false); // Скрываем всплывающее сообщение при изменении значения
   };
 
-  const currencyMask = createNumberMask({
-    ...defaultMaskOptions,
-  })
   return (
     <Container>
     <BlockBalance>
       <TitleBalance>
         Balance:
-      </TitleBalance>
+        </TitleBalance>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <FormBalance>
         <InputBalance
-          mask={currencyMask}
-          placeholder="00.00 UAH"
-          value={value}
+          // mask={currencyMask}
+          as={CurrencyInput}
+          type="text"
+          name="balance"
+          placeholder={balanceRedux ? `${balanceRedux} UAH` : '00.00 UAH'}
           onChange={handleInputChange}
           onFocus={() => setTooltipVisible(true)}
           onBlur={() => setTooltipVisible(false)}
         />
-        <ButtonBalance>Confirm</ButtonBalance>
+        <ButtonBalance
+          type="submit"
+        >
+          Confirm
+        </ButtonBalance>
       </FormBalance>
+      </Formik>
     </BlockBalance>
     <Tooltip show={tooltipVisible}>
       <ImageBg />
