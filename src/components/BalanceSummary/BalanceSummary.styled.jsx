@@ -5,6 +5,12 @@ export const Section = styled.section`
   margin-bottom: 16px;
 `;
 
+export const WrapperPeriod = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const PeriodSubheading = styled.p`
   margin-bottom: 5px;
   text-align: center;
@@ -22,7 +28,7 @@ export const BalanceSubheading = styled.p`
 export const PeriodContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 142px;
+  min-width: 142px;
   margin-left: auto;
   margin-right: auto;
 `;

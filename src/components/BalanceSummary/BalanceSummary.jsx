@@ -14,13 +14,14 @@ import {
   Income,
   PeriodSubheading,
   Section,
+  WrapperPeriod,
 } from './BalanceSummary.styled';
 
 export default function BalanceSummary() {
   return (
     <Section>
       <Link></Link>
-      <div>
+      <WrapperPeriod>
         <PeriodSubheading>Current period:</PeriodSubheading>
         <PeriodContainer>
           <PeriodBtn type='button'>
@@ -35,7 +36,7 @@ export default function BalanceSummary() {
             </svg>
           </PeriodBtn>
         </PeriodContainer>
-      </div>
+      </WrapperPeriod>
       <div>
         <BalanceSubheading>Balance:</BalanceSubheading>
         <BalanceWrapper>
