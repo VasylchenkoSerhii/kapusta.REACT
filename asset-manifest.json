@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/kapusta.REACT/static/css/main.767f662e.css",
-    "main.js": "/kapusta.REACT/static/js/main.42cc3364.js",
+    "main.js": "/kapusta.REACT/static/js/main.cc372392.js",
     "static/media/message-bg.png": "/kapusta.REACT/static/media/message-bg.71d03967c6fc0d5c92e7.png",
     "static/media/currentPeriod.svg": "/kapusta.REACT/static/media/currentPeriod.441d5297ab74758f4bbc914f4145e010.svg",
     "static/media/sprite.svg": "/kapusta.REACT/static/media/sprite.caee9172e8093cb1a8162cb60167d873.svg",
     "index.html": "/kapusta.REACT/index.html",
     "main.767f662e.css.map": "/kapusta.REACT/static/css/main.767f662e.css.map",
-    "main.42cc3364.js.map": "/kapusta.REACT/static/js/main.42cc3364.js.map"
+    "main.cc372392.js.map": "/kapusta.REACT/static/js/main.cc372392.js.map"
   },
   "entrypoints": [
     "static/css/main.767f662e.css",
-    "static/js/main.42cc3364.js"
+    "static/js/main.cc372392.js"
   ]
 }
