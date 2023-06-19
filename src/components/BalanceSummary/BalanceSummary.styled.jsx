@@ -71,7 +71,7 @@ export const ExpensesIncomeList = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 280px;
+  width: 300px;
   height: 85px;
   margin-left: auto;
   margin-right: auto;
@@ -89,7 +89,7 @@ export const ExpensesIncomeItem = styled.li`
     position: absolute;
     width: 0px;
     height: 70px;
-    left: 118px;
+    left: 127px;
     top: -11px;
 
     border: 1px solid #e0e5eb;
