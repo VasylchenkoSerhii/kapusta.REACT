@@ -9,21 +9,23 @@ import CurrencyInput from "shared/CurrencyInput/CurrencyInput";
 export default function Balance() {
   const dispatch = useDispatch();
   const balanceRedux = useSelector(getBalance);
+  const [inputValue, setInputValue] = useState(balanceRedux ?? '00.00');
   // const [isSent, setIsSent] = useState(false);
 
   const initialValues = {
     balance: balanceRedux ?? '00.00',
   };
 
-  const handleSubmit = async (values) => {
-    await dispatch(setBalance({ balance: values.balance }));
-    console.log(values.balance)
+  const handleSubmit = async () => {
+    await dispatch(setBalance({ balance: inputValue }));
+    console.log(inputValue)
     // setIsSent(true);
   };
 
   const [tooltipVisible, setTooltipVisible] = useState(true);
 
   const handleInputChange = (e) => {
+    setInputValue(+e.target.value.split(' ').join('').slice(0, -3));
     setTooltipVisible(false); // Скрываем всплывающее сообщение при изменении значения
   };
 
@@ -39,6 +41,7 @@ export default function Balance() {
           // mask={currencyMask}
           as={CurrencyInput}
           type="text"
+          id="balance"
           name="balance"
           placeholder={balanceRedux ? `${balanceRedux} UAH` : '00.00 UAH'}
           onChange={handleInputChange}
