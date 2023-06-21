@@ -1,5 +1,5 @@
 import React from 'react'
-import { BalockCalendar,BlockExpInc,BlockProduct,ButtonCalendar, ButtonContainer, ButtonExp, ButtonInc,CalculateInput, CalculatorContainer, CalculatorImage, CalendarDate, CalendarImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, Hero, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Section,ViewCalculator, ViewCalendar } from './Balance.styled'
+import { BalockCalendar,BlockExpInc,BlockProduct,ButtonCalendar, ButtonContainer,CalculateInput, CalculatorContainer, CalculatorImage, CalendarDate, CalendarImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, Hero, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Section,ViewCalculator, ViewCalendar } from './Balance.styled'
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import { Calculator } from 'react-mac-calculator';
@@ -7,8 +7,12 @@ import 'react-calendar/dist/Calendar.css';
 import { Formik } from 'formik';
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
 import ReportsBalanceBlock from 'components/ReportsBalanceBlock/ReportsBalanceBlock';
+import { ExpIncNavigation } from 'components/ExpIncNavigation/ExpIncNavigation';
+import { MobileTable } from 'components/MobileTable/MobileTable';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Balance() {
+  const isMobile = useMediaQuery({ maxWidth: 375 });
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
@@ -70,10 +74,7 @@ export default function Balance() {
       <Hero>
         <ToTransaction />
         <ReportsBalanceBlock />
-        {/* <BlockButton> */}
-          <ButtonExp>Expenses</ButtonExp>
-          <ButtonInc>Income</ButtonInc>
-        {/* </BlockButton> */}
+        <ExpIncNavigation/>
         <BlockExpInc>
           <BalockCalendar>
             <ButtonCalendar onClick={handleCalendarToggle}>
@@ -156,6 +157,7 @@ export default function Balance() {
             </ProductForm>
           </BlockProduct>
         </BlockExpInc>
+        {isMobile && <MobileTable />}
       </Hero>
     </Section>
   )
