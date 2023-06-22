@@ -3,9 +3,9 @@ import AppBar from 'components/AppBar/AppBar';
 
 export default function Layout() {
   return (
-    <main>
+    <div>
       <AppBar />
       <Outlet />
-    </main>
+    </div>
   );
 }
