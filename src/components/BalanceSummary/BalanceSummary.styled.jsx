@@ -5,6 +5,7 @@ export const Section = styled.section`
   margin-top: 16px;
   margin-bottom: 16px;
   padding: 0px 20px;
+  font-family: ${p => p.theme.fonts.bodu};
 
   @media screen and (min-width: 768px) {
     padding: 0px 32px;
