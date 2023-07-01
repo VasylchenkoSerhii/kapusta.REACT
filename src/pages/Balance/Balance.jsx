@@ -1,33 +1,34 @@
 import React from 'react'
-import { BalockCalendar,BlockExpInc,BlockProduct,ButtonCalendar, ButtonContainer,CalculateInput, CalculatorContainer, CalculatorImage, CalendarDate, CalendarImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, Hero, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Section,ViewCalculator, ViewCalendar } from './Balance.styled'
+import { BlockExpInc,BlockProduct, ButtonContainer,CalculateInput, CalculatorContainer, CalculatorImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, Hero, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, Section,ViewCalculator } from './Balance.styled'
 import { useState } from 'react';
-import Calendar from 'react-calendar';
+// import Calendar from 'react-calendar';
 import { Calculator } from 'react-mac-calculator';
-import 'react-calendar/dist/Calendar.css';
+// import 'react-calendar/dist/Calendar.css';
 import { Formik } from 'formik';
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
 import ReportsBalanceBlock from 'components/ReportsBalanceBlock/ReportsBalanceBlock';
 import { ExpIncNavigation } from 'components/ExpIncNavigation/ExpIncNavigation';
 import { MobileTable } from 'components/MobileTable/MobileTable';
 import { useMediaQuery } from 'react-responsive';
+import { CalendarComponent } from 'components/CalendarComponent/CalendarComponent';
 
 export default function Balance() {
   const isMobile = useMediaQuery({ maxWidth: 375 });
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  // const [showCalendar, setShowCalendar] = useState(false);
+  // const [selectedDate, setSelectedDate] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
   const [showCalculator, setShowCalculator] = useState(false);
   const [numberValue, setNumberValue] = useState('');
   const [isRotated, setIsRotated] = useState(false);
 
-  const handleCalendarToggle = () => {
-    setShowCalendar(!showCalendar);
-  };
+  // const handleCalendarToggle = () => {
+  //   setShowCalendar(!showCalendar);
+  // };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-    setShowCalendar(false);
-  };
+  // const handleDateChange = (date) => {
+  //   setSelectedDate(date);
+  //   setShowCalendar(false);
+  // };
 
   const initialValues = {
     product: '',
@@ -76,17 +77,7 @@ export default function Balance() {
         <ReportsBalanceBlock />
         <ExpIncNavigation/>
         <BlockExpInc>
-          <BalockCalendar>
-            <ButtonCalendar onClick={handleCalendarToggle}>
-              <CalendarImage/>
-              <CalendarDate>{selectedDate.toLocaleDateString()}</CalendarDate>
-            </ButtonCalendar>
-            {showCalendar && (
-              <ViewCalendar>
-                <Calendar onChange={handleDateChange} value={selectedDate} />
-              </ViewCalendar>
-            )}
-          </BalockCalendar>
+          <CalendarComponent />
           <BlockProduct>
             <ProductForm>
               <Formik
