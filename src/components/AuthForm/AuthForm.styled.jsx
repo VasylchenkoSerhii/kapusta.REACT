@@ -3,7 +3,6 @@ import { Field, ErrorMessage, Form } from 'formik';
 
 export const MainForm = styled(Form)`
   position: absolute;
-  left: 20px;
   top: 255px;
   width: 280px;
   height: 496px;
@@ -18,10 +17,14 @@ export const MainForm = styled(Form)`
   border-radius: 30px;
   background: #ffffff;
 
+  @media screen and (max-width: 1199px) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   @media screen and (min-width: 768px) {
     width: 426px;
     height: 552px;
-    left: 171px;
     top: 317px;
     padding: 56px 84px;
   }
@@ -121,6 +124,8 @@ export const GoogleBtn = styled.button`
   background-color: ${p => p.theme.colors.secondaryAccent};
   cursor: pointer;
   filter: drop-shadow(1px 2px 3px rgba(170, 178, 197, 0.2));
+
+  transition: background-color 250ms linear, color 250ms linear;
 
   &:hover,
   &:focus {
