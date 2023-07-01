@@ -1,8 +1,27 @@
 import styled from 'styled-components';
 
 export const Section = styled.section`
+  padding-top: 32px;
   padding-bottom: 40px;
   font-family: ${p => p.theme.fonts.bodu};
+`;
+
+export const MainWrapper = styled.div`
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    height: 348px;
+    padding: 20px 0px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 30px;
+    background: #ffffff;
+    box-shadow: 0px 10px 60px 0px rgba(170, 178, 197, 0.2);
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 1034px;
+    padding: 20px 225px;
+  }
 `;
 
 export const WrapperExpenses = styled.div`
@@ -37,6 +56,10 @@ export const CategoriesList = styled.ul`
   justify-content: space-evenly;
   list-style: none;
   padding: 0px 20px;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(6, 56px);
+  }
 `;
 
 export const CategoriesItem = styled.li`
@@ -76,9 +99,36 @@ export const CategoriesSum = styled.p`
   margin-bottom: 5px;
 `;
 
+export const CategoriesBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
 export const CategoriesIcon = styled.svg`
   fill: #071f41;
-  margin-bottom: 5px;
+
+  transition: fill 150ms linear;
+
+  &:hover,
+  &:focus {
+    fill: ${p => p.theme.colors.accent};
+  }
+`;
+
+export const BackgroundIcon = styled.div`
+  width: 59px;
+  height: 46px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  background: #f5f6fb;
+
+  transition: background-color 150ms linear;
+
+  &:hover,
+  &:focus {
+    background-color: #ffdac0;
+  }
 `;
 
 export const CategoriesName = styled.p`

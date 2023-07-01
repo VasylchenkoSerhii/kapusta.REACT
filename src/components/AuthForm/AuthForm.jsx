@@ -74,13 +74,23 @@ export default function AuthForm() {
         <Label htmlFor='email'>
           <LabelEmail>Email:</LabelEmail>
         </Label>
-        <Input type='email' id='email' name='email' />
+        <Input
+          type='email'
+          id='email'
+          name='email'
+          placeholder='your@email.com'
+        />
         <Error name='email' component='div' />
 
         <Label htmlFor='password'>
           <LabelPassword>Password:</LabelPassword>
         </Label>
-        <Input type='password' id='password' name='password' />
+        <Input
+          type='password'
+          id='password'
+          name='password'
+          placeholder='Password'
+        />
         <Error name='password' component='div' />
 
         <WripperBtns>
