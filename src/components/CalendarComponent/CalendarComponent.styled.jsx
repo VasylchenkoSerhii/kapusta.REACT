@@ -8,15 +8,15 @@ export const BalockCalendar = styled.div`
   margin-left: auto;
   margin-right: auto;
   @media screen and (min-width: 768px) {
-    margin-top: 26px;
-    margin-left: 40px;
-    margin-right: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 40px;
     /* margin: 0; */
     padding: 0;
     width: 100px;
   }
   @media screen and (min-width: 1200px) {
-    margin-left: 32px;
+    margin-left: 0px;
   }
 `
 export const ButtonCalendar = styled.div`

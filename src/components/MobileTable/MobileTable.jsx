@@ -5,7 +5,7 @@ import { Bin, BlockTransaction, Info, InfoTransaction, Name, TableList, ValueTra
 import { useEffect } from "react";
 import { deleteTransaction, fetchTransactions } from "redux/report/report-operations";
 // import { getAllTransactions } from "redux/report/report-selectors";
-// import { CalendarComponent } from "components/CalendarComponent/CalendarComponent";
+import { CalendarComponent } from "components/CalendarComponent/CalendarComponent";
 
 export const MobileTable = () => {
   // const data = useSelector(getAllTransactions);
@@ -37,7 +37,7 @@ export const MobileTable = () => {
 
   return (
     <>
-      {/* <CalendarComponent date={date} setDate={onDateChange} /> */}
+      <CalendarComponent/>
       <TableList>
         {/* {tableDate.map(t => ( */}
         <li>
