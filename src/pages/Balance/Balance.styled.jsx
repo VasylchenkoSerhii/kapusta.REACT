@@ -361,7 +361,7 @@ export const CategoryInput = styled(Field)`
   width: 186px;
   height: 40px;
   padding-left: 20px;
-  padding-right: 60px;
+  padding-right: 0px;
   border-top: none;
   border-bottom: none;
   outline: none;
@@ -405,6 +405,9 @@ export const CategoryList = styled.ul`
   background: #FFFFFF;
   border: none;
   box-shadow: 0px 3px 4px rgba(170, 178, 197, 0.4);
+  @media screen and (min-width: 1200px) {
+    width: 168px;
+  }
 `
 export const CategoryItem = styled.li`
   display: flex;
@@ -466,7 +469,7 @@ export const Error = styled(ErrorMessage)`
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 205px;
+  margin-left: 35px;
   margin-top: 32px;
   @media screen and (min-width: 1200px) {
     margin-top: 0;

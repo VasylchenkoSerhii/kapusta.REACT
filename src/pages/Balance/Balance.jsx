@@ -11,6 +11,7 @@ import { ExpIncNavigation } from 'components/ExpIncNavigation/ExpIncNavigation';
 import { MobileTable } from 'components/MobileTable/MobileTable';
 import { useMediaQuery } from 'react-responsive';
 import { CalendarComponent } from 'components/CalendarComponent/CalendarComponent';
+import { TabletTable } from 'components/TabletTable/TabletTable';
 
 export default function Balance() {
   const isMobile = useMediaQuery({ maxWidth: 375 });
@@ -77,8 +78,9 @@ export default function Balance() {
         <ReportsBalanceBlock />
         <ExpIncNavigation/>
         <BlockExpInc>
-          <CalendarComponent />
+        <div>
           <BlockProduct>
+            <CalendarComponent />
             <ProductForm>
               <Formik
                 initialValues={initialValues}
@@ -146,7 +148,11 @@ export default function Balance() {
                 )}
               </Formik>
             </ProductForm>
-          </BlockProduct>
+            </BlockProduct>
+            <div>
+              <TabletTable />
+            </div>
+        </div>
         </BlockExpInc>
         {isMobile && <MobileTable />}
       </Hero>
