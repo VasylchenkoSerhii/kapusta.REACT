@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { deleteTransaction, fetchTransactions } from "redux/report/report-operations";
 // import { getAllTransactions } from "redux/report/report-selectors";
 import { CalendarComponent } from "components/CalendarComponent/CalendarComponent";
+import Modal from "components/Modal/Modal";
+import { useState } from "react";
 
 export const MobileTable = () => {
   // const data = useSelector(getAllTransactions);
@@ -13,6 +15,8 @@ export const MobileTable = () => {
   const isIncome = location.search.includes('income');
   const dispatch = useDispatch();
   // const [date, setDate] = useState(new Date());
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
 
   // let tableDate = isIncome
   //   ? data.filter(({ income }) => income)
@@ -26,9 +30,26 @@ export const MobileTable = () => {
     sessionStorage.removeItem('transactionDate');
   }, []);
 
-  const handleDelete = (id, sum, income) => {
+  const handleConfirmDelete = () => {
+    // Извлекаем данные транзакции из состояния модального окна
+    const { id, sum, income } = modalData;
+
+    // Выполняем удаление транзакции
     dispatch(deleteTransaction({ id, sum, income }));
+
+    // Закрываем модальное окно
+    closeModal();
   };
+
+  const openModal = (id, sum, income) => {
+    setModalData({ id, sum, income });
+    setShowModal(true);
+  }
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalData(null);
+  }
 
   // const onDateChange = date => {
   //   sessionStorage.setItem('transactionDate', date.toString());
@@ -52,9 +73,16 @@ export const MobileTable = () => {
           <ValueTransaction isIncome={isIncome}>
             {!isIncome ? '- 300 UAH' : '300 UAH'}
           </ValueTransaction>
-          <Bin width="18" height="18" onClick={() => handleDelete()}>
+          <Bin width="18" height="18" onClick={() => openModal()}>
             <use href={`${Sprite}#bin`}></use>
           </Bin>
+          {showModal && (
+            <Modal
+              text="Are you sure ?"
+              onConfirm={handleConfirmDelete}
+              onClose={closeModal}
+            />
+          )}
           </BlockTransaction>
         </li>
         {/* ))} */}

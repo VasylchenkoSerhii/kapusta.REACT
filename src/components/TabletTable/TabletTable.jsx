@@ -5,12 +5,16 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Sprite from '../../images/sprite.svg';
 import { deleteTransaction, fetchTransactions } from "redux/report/report-operations";
+import { useState } from "react";
+import Modal from "components/Modal/Modal";
 
 export const TabletTable = () => {
   // const data = useSelector(getAllTransactions);
   const location = useLocation();
   const isIncome = location.search.includes('income');
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
 
   // const tableData = isIncome
   //   ? data.filter(({ income }) => income)
@@ -20,9 +24,31 @@ export const TabletTable = () => {
     dispatch(fetchTransactions());
   }, [dispatch]);
 
-  const handleDelete = (id, sum, income) => {
+  // const handleDelete = (id, sum, income) => {
+  //   openModal();
+  //   setModalData({ id, sum, income });
+  // };
+
+  const handleConfirmDelete = () => {
+    // Извлекаем данные транзакции из состояния модального окна
+    const { id, sum, income } = modalData;
+
+    // Выполняем удаление транзакции
     dispatch(deleteTransaction({ id, sum, income }));
+
+    // Закрываем модальное окно
+    closeModal();
   };
+
+  const openModal = (id, sum, income) => {
+    setModalData({ id, sum, income });
+    setShowModal(true);
+  }
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalData(null);
+  }
 
   return (
     <TableDiv>
@@ -53,11 +79,18 @@ export const TabletTable = () => {
               </StyledTd>
               <StyledTd>
                 <BtnBin>
-                <StyledButton onClick={() => handleDelete()}>
+                <StyledButton onClick={() => openModal()}>
                     <StyledSvg width="18" height="18">
                       <use href={`${Sprite}#bin`}></use>
                     </StyledSvg>
-                  </StyledButton>
+                </StyledButton>
+                {showModal && (
+                  <Modal
+                    text="Are you sure ?"
+                    onConfirm={handleConfirmDelete}
+                    onClose={closeModal}
+                  />
+                )}
                 </BtnBin>
               </StyledTd>
             </tr>
