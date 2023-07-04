@@ -26,7 +26,7 @@ export default function App() {
         />
         <Route
           path='/balance'
-          element={<Balance/>}
+          element={<PrivateRoute component={Balance} redirectTo='/' />}
         />
         <Route path='/mobile-product-page' element={<MobileProductPage />} />
         <Route path='/balance/reports' element={<Reports />} />
