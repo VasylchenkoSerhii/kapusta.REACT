@@ -24,6 +24,12 @@ export const Wripper = styled.div`
   box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
   border-radius: 30px;
 
+  @media screen and (min-width: 768px) {
+    padding-top: 50px;
+    width: 320px;
+    height: 174px;
+  }
+
   @media screen and (min-width: 1200px) {
     min-width: 350px;
     height: 150px;
@@ -33,8 +39,8 @@ export const Wripper = styled.div`
 
 export const CloseBtn = styled.button`
   position: absolute;
-  top: 8px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -43,7 +49,11 @@ export const CloseBtn = styled.button`
 export const ModalQuestion = styled.p`
   margin-bottom: 20px;
   text-align: center;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.medium};;
   font-size: ${p => p.theme.fontSizes.s};
+  letter-spacing: 0.28px;
+  color: ${p => p.theme.colors.text};
 
   @media screen and (min-width: 1200px) {
     font-size: ${p => p.theme.fontSizes.m};
