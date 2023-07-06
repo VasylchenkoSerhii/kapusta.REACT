@@ -4,15 +4,15 @@ export const TableDiv = styled.div`
   overflow: auto;
   overflow-x: hidden;
   width: 624px;
-  margin-left: 40px;
+  /* margin-left: 40px; */
   max-height: 400px;
-  margin-top: 48px;
+  /* margin-top: 48px; */
   @media screen and (max-width: 767px) {
     display: none;
   }
   @media screen and (min-width: 1200px) {
     width: 746px;
-    margin-top: 60px;
+    /* margin-top: 60px; */
     margin-left: 32px;
   }
 `;
@@ -20,6 +20,9 @@ export const TableDiv = styled.div`
 export const StyledTable = styled.table`
   border-collapse: collapse;
   width: 624px;
+  @media screen and (min-width: 1200px) {
+    width: 746px;
+  }
 `;
 
 export const StyledTh = styled.th`

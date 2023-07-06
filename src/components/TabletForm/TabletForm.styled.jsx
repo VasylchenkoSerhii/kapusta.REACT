@@ -9,7 +9,7 @@ export const ProductForm = styled.div`
   }
 `
 export const MainForm = styled(Form)`
-  position: relative;
+  /* position: relative; */
   @media screen and (min-width: 1200px) {
     display: flex;
     align-items: center;
