@@ -2,6 +2,7 @@ import { Formik } from "formik";
 import { Calculator } from 'react-mac-calculator';
 import { ButtonContainer, CalculateInput, CalculatorContainer, CalculatorImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, ViewCalculator } from "./TabletForm.styled";
 import { useState } from "react";
+import { CalendarComponent } from "components/CalendarComponent/CalendarComponent";
 
 export const TabletForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,6 +51,8 @@ export const TabletForm = () => {
   };
 
   return (
+    <>
+    <CalendarComponent/>
     <ProductForm>
       <Formik
         initialValues={initialValues}
@@ -117,5 +120,6 @@ export const TabletForm = () => {
         )}
       </Formik>
     </ProductForm>
+    </>
   )
 }
