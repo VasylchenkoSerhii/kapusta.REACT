@@ -93,6 +93,13 @@ export const CategoriesItem = styled.li`
       transform: translateY(20px);
     }
   }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const CategoriesSum = styled.p`
