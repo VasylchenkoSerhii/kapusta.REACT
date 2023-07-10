@@ -46,7 +46,7 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
-        state.user.email = payload.email;
+        state.user.email = { email: payload.email, balance: payload.balance };
         state.token = payload.token;
         state.isLoggedIn = true;
         state.isLoading = false;
@@ -57,7 +57,7 @@ const authSlice = createSlice({
         state.message = payload;
       })
       .addCase(logOut.fulfilled, state => {
-        state.user = { email: '' };
+        state.user = { email: '', balance: null };
         state.token = null;
         state.isLoggedIn = false;
         state.isLoading = false;
