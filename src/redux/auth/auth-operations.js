@@ -65,7 +65,7 @@ export const setBalance = createAsyncThunk(
   'auth/setBalance',
   async (balance, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch('/users/balance', balance);
+      const { data } = await axios.patch('users/balance', balance);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import * as yup from 'yup';
 import { BlockBalance, ButtonBalance, Container, FormBalance, ImageBg, InputBalance, TextBg, TitleBalance, TitleMessageBg, Tooltip } from "./Balance.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { getBalance } from "redux/auth/auth-selector";
@@ -10,19 +11,27 @@ export default function Balance() {
   const dispatch = useDispatch();
   const balanceRedux = useSelector(getBalance);
   const [inputValue, setInputValue] = useState(balanceRedux ?? '00.00');
-  // const [isSent, setIsSent] = useState(false);
+  const [tooltipVisible, setTooltipVisible] = useState(true);
+
+  const validationSchema = yup.object().shape({
+    balance: yup
+      .string()
+      .min(1, 'Balance should be at least 1 characters long')
+      .required('Balance is required'),
+  });
 
   const initialValues = {
     balance: balanceRedux ?? '00.00',
   };
 
+  useEffect(() => {
+    setInputValue(balanceRedux ?? '00.00');
+  }, [balanceRedux]);
+
   const handleSubmit = async () => {
     await dispatch(setBalance({ balance: inputValue }));
     console.log(inputValue)
-    // setIsSent(true);
   };
-
-  const [tooltipVisible, setTooltipVisible] = useState(true);
 
   const handleInputChange = (e) => {
     setInputValue(+e.target.value.split(' ').join('').slice(0, -3));
@@ -35,7 +44,7 @@ export default function Balance() {
       <TitleBalance>
         Balance:
         </TitleBalance>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
       <FormBalance>
         <InputBalance
           // mask={currencyMask}
