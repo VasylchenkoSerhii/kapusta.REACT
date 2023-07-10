@@ -28,7 +28,7 @@ export default function BalanceSummary() {
     <Section>
       <WrapperForTabletGroup>
         <WrapperBackLink>
-          <BackLink>
+          <BackLink to='/balance'>
             <BackLinkIcon width={16} height={16}>
               <use href={`${Sprite}#icon-arrow-back`}></use>
             </BackLinkIcon>
