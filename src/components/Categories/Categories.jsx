@@ -48,8 +48,11 @@ export default function Categories() {
         <WrapperExpenses>
           <ExpensesBtn
             type='button'
-            onClick={handleExpensesClick}
-            disabled={activeCategory === 'expenses'}
+            onClick={
+              activeCategory === 'expenses'
+                ? handleIncomeClick
+                : handleExpensesClick
+            }
           >
             <svg width={6} height={15}>
               <use href={`${Sprite}#icon-arrow-left`}></use>
@@ -60,8 +63,11 @@ export default function Categories() {
           </ExpensesText>
           <ExpensesBtn
             type='button'
-            onClick={handleIncomeClick}
-            disabled={activeCategory === 'income'}
+            onClick={
+              activeCategory === 'expenses'
+                ? handleIncomeClick
+                : handleExpensesClick
+            }
           >
             <svg width={6} height={15}>
               <use href={`${Sprite}#icon-arrow-right`}></use>
