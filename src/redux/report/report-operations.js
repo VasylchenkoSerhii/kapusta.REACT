@@ -2,6 +2,32 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setBalance } from 'redux/auth/auth-operations';
 
+export const addTransaction = createAsyncThunk(
+  'report/addTransaction',
+  async (inputData, { rejectWithValue, getState, dispatch }) => {
+    const { income, sum } = inputData;
+    const balance = +getState().auth.user.balance;
+
+    const updatedBalance = income ? balance + +sum : balance - sum;
+
+    if (updatedBalance < 0) {
+      return rejectWithValue("You don't have enough money");
+    }
+
+    dispatch(setBalance({ balance: updatedBalance }));
+
+    try {
+      const url = inputData.income
+        ? '/transactions/income'
+        : '/transactions/expenses';
+      const res = await axios.post(url, inputData);
+      return res;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const deleteTransaction = createAsyncThunk(
   'report/deleteTransaction',
   async (credentials, { rejectWithValue, getState, dispatch }) => {

@@ -3,12 +3,19 @@ import { Calculator } from 'react-mac-calculator';
 import { ButtonContainer, CalculateInput, CalculatorContainer, CalculatorImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, ViewCalculator } from "./TabletForm.styled";
 import { useState } from "react";
 import { CalendarComponent } from "components/CalendarComponent/CalendarComponent";
+import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addTransaction } from "redux/report/report-operations";
 
 export const TabletForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCalculator, setShowCalculator] = useState(false);
   const [numberValue, setNumberValue] = useState('');
   const [isRotated, setIsRotated] = useState(false);
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const isIncome = location.search.includes('income');
+  const [date, setDate] = useState(new Date());
 
   const initialValues = {
     product: '',
@@ -16,13 +23,24 @@ export const TabletForm = () => {
     number: '',
   };
 
-  const categories = ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
+  const categories = isIncome ? ['Salary', 'Income', 'Other'] : ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values.product);
-    console.log(values.category); // Обработка отправки формы
-    console.log(values.number);
-    resetForm();
+  const handleSubmit = async (values) => {
+    if (values.category) {
+      await dispatch(
+        addTransaction({
+          dateTransaction: date,
+          income: isIncome,
+          sum: values.number,
+          category: values.category,
+          description: values.product,
+        })
+      );
+      console.log(values.product);
+      console.log(values.category); // Обработка отправки формы
+      console.log(values.number);
+      // resetForm();
+    }
   };
 
   const toggleMenu = () => {
@@ -52,7 +70,7 @@ export const TabletForm = () => {
 
   return (
     <>
-    <CalendarComponent/>
+    <CalendarComponent date={date} setDate={setDate}/>
     <ProductForm>
       <Formik
         initialValues={initialValues}
