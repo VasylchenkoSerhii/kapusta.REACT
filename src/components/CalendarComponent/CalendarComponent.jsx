@@ -3,7 +3,7 @@ import { BalockCalendar, ButtonCalendar, CalendarDate, CalendarImage, ViewCalend
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 
-export const CalendarComponent = () => {
+export const CalendarComponent = ({date,setDate}) => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -11,8 +11,9 @@ export const CalendarComponent = () => {
     setShowCalendar(!showCalendar);
   };
 
-  const handleDateChange = (date) => {
+  const handleDateChange = () => {
     setSelectedDate(date);
+    setDate(date);
     setShowCalendar(false);
   };
 
