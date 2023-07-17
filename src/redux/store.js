@@ -11,6 +11,7 @@ import {
   REGISTER,
   persistStore,
 } from 'redux-persist';
+import { reportReducer } from './report/reportSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -21,6 +22,7 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
+    report: reportReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

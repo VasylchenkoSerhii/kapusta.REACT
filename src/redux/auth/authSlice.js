@@ -12,6 +12,7 @@ export const initialState = {
     email: '',
     balance: 'null',
   },
+  isLoginApiDone: false,
   token: null,
   isRefreshing: false,
   isLoading: false,
@@ -31,6 +32,7 @@ const authSlice = createSlice({
     builder
       .addCase(register.pending, state => {
         state.isLoading = true;
+        state.message = '';
       })
       .addCase(register.fulfilled, (state, { payload }) => {
         state.user.email = payload.user;
@@ -43,15 +45,19 @@ const authSlice = createSlice({
         state.message = payload;
       })
       .addCase(login.pending, state => {
+        state.isLogin = false;
         state.isLoading = true;
+        state.message = '';
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.user.email = { email: payload.email, balance: payload.balance };
         state.token = payload.token;
+        state.isLoginApiDone = true;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(login.rejected, (state, { payload }) => {
+        state.isLoginApiDone = true;
         state.isLoading = false;
         state.isLoggedIn = false;
         state.message = payload;
@@ -61,16 +67,19 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
         state.isLoading = false;
+        state.message = '';
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.isLoginApiDone = true;
         state.user = payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
+        state.isLoginApiDone = true;
         state.isRefreshing = false;
       })
       .addCase(

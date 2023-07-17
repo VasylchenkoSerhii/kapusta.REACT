@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import { Calculator } from 'react-mac-calculator';
 import { ButtonContainer, CalculateInput, CalculatorContainer, CalculatorImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, ViewCalculator } from "./TabletForm.styled";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { CalendarComponent } from "components/CalendarComponent/CalendarComponent";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -16,6 +16,7 @@ export const TabletForm = () => {
   const location = useLocation();
   const isIncome = location.search.includes('income');
   const [date, setDate] = useState(new Date());
+  const formikRef = useRef();
 
   const initialValues = {
     product: '',
@@ -25,7 +26,7 @@ export const TabletForm = () => {
 
   const categories = isIncome ? ['Salary', 'Income', 'Other'] : ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values, {resetForm}) => {
     if (values.category) {
       await dispatch(
         addTransaction({
@@ -39,7 +40,7 @@ export const TabletForm = () => {
       console.log(values.product);
       console.log(values.category); // Обработка отправки формы
       console.log(values.number);
-      // resetForm();
+      resetForm();
     }
   };
 
@@ -75,6 +76,7 @@ export const TabletForm = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
+        innerRef={formikRef}
       >
         {({ values, handleSubmit, handleChange, setFieldValue }) => (
         <MainForm onSubmit={handleSubmit}>
