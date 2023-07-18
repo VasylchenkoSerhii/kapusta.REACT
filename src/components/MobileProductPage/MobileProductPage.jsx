@@ -1,15 +1,21 @@
 import { Arrow, ButtonContainer, ButtonTo, CalculateInput, CalculatorContainer, CalculatorImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, Hero, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, ViewCalculator } from "./MobileProductPage.styled"
 import Sprite from '../../images/sprite.svg';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import { Calculator } from "react-mac-calculator";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTransaction } from "redux/report/report-operations";
 
 export const MobileProductPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCalculator, setShowCalculator] = useState(false);
   const [numberValue, setNumberValue] = useState('');
+  const dispatch = useDispatch();
   const [isRotated, setIsRotated] = useState(false);
+  const formikRef = useRef();
+  const location = useLocation();
+  const isIncome = location.search.includes('income');
 
   const navigate = useNavigate();
 
@@ -25,11 +31,23 @@ export const MobileProductPage = () => {
 
   const categories = ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values.product);
-    console.log(values.category); // Обработка отправки формы
-    console.log(values.number);
-    resetForm();
+  const handleSubmit = async (values, { resetForm }) => {
+    if (values) {
+      await dispatch(
+        addTransaction({
+          dateTransaction:
+            sessionStorage.getItem('transactionDate') || new Date(),
+          income: isIncome,
+          sum: values.number,
+          category: values.category,
+          description: values.product,
+        })
+      );
+      console.log(values.product);
+      console.log(values.category); // Обработка отправки формы
+      console.log(values.number);
+      resetForm();
+    }
   };
 
   const toggleMenu = () => {
@@ -69,6 +87,7 @@ export const MobileProductPage = () => {
               <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
+                innerRef={formikRef}
               >
                 {({ values, handleSubmit, handleChange, setFieldValue }) => (
                 <MainForm onSubmit={handleSubmit}>

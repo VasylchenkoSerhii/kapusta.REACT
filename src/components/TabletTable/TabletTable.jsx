@@ -1,6 +1,6 @@
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { BtnBin, DeleteDiv, StyledButton, StyledSumValue, StyledSvg, StyledTable, StyledTd, StyledTh, StyledThead, SumNumber, TableDiv } from "./TabletTable.styled";
-// import { getAllTransactions } from "redux/report/report-selectors";
+import { getAllTransactions } from "redux/report/report-selectors";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Sprite from '../../images/sprite.svg';
@@ -9,25 +9,23 @@ import { useState } from "react";
 import Modal from "components/Modal/Modal";
 
 export const TabletTable = () => {
-  // const data = useSelector(getAllTransactions);
+  const data = useSelector(getAllTransactions);
   const location = useLocation();
   const isIncome = location.search.includes('income');
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState(null);
 
-  // const tableData = isIncome
-  //   ? data.filter(({ income }) => income)
-  //   : data.filter(({ income }) => !income);
+  const tableData = isIncome ? (data || []).filter(({ income }) => income) : (data || []).filter(({ income }) => !income);
 
   useEffect(() => {
     dispatch(fetchTransactions());
   }, [dispatch]);
 
-  // const handleDelete = (id, sum, income) => {
-  //   openModal();
-  //   setModalData({ id, sum, income });
-  // };
+  const handleDelete = (id, sum, income) => {
+    openModal();
+    dispatch(deleteTransaction({ id, sum, income }));
+  };
 
   const handleConfirmDelete = () => {
     // Извлекаем данные транзакции из состояния модального окна
@@ -63,23 +61,23 @@ export const TabletTable = () => {
           </tr>
         </StyledThead>
         <tbody>
-          {/* {tableData.map(t => ( */}
-            <tr>
-              <StyledTd>21.11.2019</StyledTd>
-              <StyledTd>Bananas</StyledTd>
-              <StyledTd>Products</StyledTd>
+          {tableData.map(t => (
+            <tr key={t._id}>
+              <StyledTd>{t.dateTransaction.slice(0, 10)}</StyledTd>
+              <StyledTd>{t.description}</StyledTd>
+              <StyledTd>{t.category}</StyledTd>
               <StyledTd>
                 <DeleteDiv>
                   <SumNumber>
                   <StyledSumValue isIncome={isIncome}>
-                    {!isIncome ? '- 300 UAH' : '300 UAH'}
+                    {!isIncome ? (<span>- {t.sum} UAH</span>) : (<span>{t.sum} UAH</span>)}
                   </StyledSumValue>
                   </SumNumber>
                 </DeleteDiv>
               </StyledTd>
               <StyledTd>
                 <BtnBin>
-                <StyledButton onClick={() => openModal()}>
+                <StyledButton onClick={() => {openModal(t._id, t.sum, t.income); handleDelete(t._id, t.sum, t.income)}}>
                     <StyledSvg width="18" height="18">
                       <use href={`${Sprite}#bin`}></use>
                     </StyledSvg>
@@ -94,7 +92,7 @@ export const TabletTable = () => {
                 </BtnBin>
               </StyledTd>
             </tr>
-          {/* ))} */}
+          ))}
         </tbody>
       </StyledTable>
     </TableDiv>

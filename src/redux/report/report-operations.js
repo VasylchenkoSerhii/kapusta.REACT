@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setBalance } from 'redux/auth/auth-operations';
 
+axios.defaults.baseURL = 'https://kapusta-es4s.onrender.com';
+
 export const addTransaction = createAsyncThunk(
   'report/addTransaction',
   async (inputData, { rejectWithValue, getState, dispatch }) => {

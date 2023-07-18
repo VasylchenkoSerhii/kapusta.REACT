@@ -14,6 +14,7 @@ export const initialState = {
   },
   isLoginApiDone: false,
   token: null,
+  accessToken: null,
   isRefreshing: false,
   isLoading: false,
   isLoggedIn: false,
@@ -51,7 +52,7 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.user.email = { email: payload.email, balance: payload.balance };
-        state.token = payload.token;
+        state.accessToken = payload.token;
         state.isLoginApiDone = true;
         state.isLoggedIn = true;
         state.isLoading = false;
@@ -64,7 +65,7 @@ const authSlice = createSlice({
       })
       .addCase(logOut.fulfilled, state => {
         state.user = { email: '', balance: null };
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
         state.isLoading = false;
         state.message = '';
