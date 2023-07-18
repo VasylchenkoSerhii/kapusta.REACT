@@ -26,14 +26,14 @@ const reportSlice = createSlice({
   },
   extraReducers: {
     [fetchTransactions.fulfilled](state, action) {
-      state.allTransaction = action.payload.data;
+      state.allTransactions = action.payload.data;
     },
     [addTransaction.fulfilled](state, action) {
       state.error = null;
       if (state.allTransactions) {
-        state.allTransaction.push(action.payload.data);
+        state.allTransactions.push(action.payload.data);
       } else {
-        state.allTransaction = [action.payload.data];
+        state.allTransactions = [action.payload.data];
       }
     },
     [addTransaction.rejected](state, action) {
