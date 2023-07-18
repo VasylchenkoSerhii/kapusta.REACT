@@ -1,7 +1,7 @@
 import axios from 'axios';
 const { createAsyncThunk } = require('@reduxjs/toolkit');
 
-axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.baseURL = 'https://kapusta-es4s.onrender.com';
 
 const token = {
   set(token) {
