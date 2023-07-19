@@ -28,8 +28,18 @@ export default function App() {
           path='/balance'
           element={<PrivateRoute component={Balance} redirectTo='/' />}
         />
-        <Route path='/mobile-product-page' element={<MobileProductPage />} />
-        <Route path='/balance/reports' element={<Reports />} />
+        <Route
+          path='/mobile-product-page'
+          element={
+            <PrivateRoute component={MobileProductPage} redirectTo='/' />
+          }
+        />
+        <Route
+          path='/reports'
+          element={<PrivateRoute component={Reports} redirectTo='/' />}
+        />
+        {/* <Route path='/mobile-product-page' element={<MobileProductPage />} /> */}
+        {/* <Route path='/balance/reports' element={<Reports />} /> */}
       </Route>
     </Routes>
   );
