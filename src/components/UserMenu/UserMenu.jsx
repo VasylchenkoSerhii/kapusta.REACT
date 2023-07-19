@@ -11,6 +11,7 @@ export default function UserMenu() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const userName = useSelector(getUserName);
   const dispath = useDispatch();
+  console.log(userName);
 
   const toggleModal = () => {
     setIsModalOpen(prev => !prev);
@@ -23,7 +24,7 @@ export default function UserMenu() {
   return (
     <>
       <Wrapper>
-        <UserIcon>{userName && userName.charAt(0)}</UserIcon>
+        <UserIcon>{userName.charAt(0)}</UserIcon>
         <UserName>User Name</UserName>
         <Exit type='button' onClick={() => toggleModal()}>
           Exit
