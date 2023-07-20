@@ -26,6 +26,7 @@ export default function Modal({ onConfirm, text, onClose }) {
       window.removeEventListener('keydown', handleClickByEscape);
     };
   }, [onClose]);
+  
   return createPortal(
     <Overlay>
       <Wripper>
