@@ -11,7 +11,6 @@ export default function UserMenu() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const userName = useSelector(getUserName);
   const dispath = useDispatch();
-  console.log(userName);
 
   const toggleModal = () => {
     setIsModalOpen(prev => !prev);
