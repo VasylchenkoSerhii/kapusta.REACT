@@ -14,23 +14,14 @@ export const TabletTable = () => {
   const isIncome = location.search.includes('income');
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const [modalData, setModalData] = useState(null);
 
-  const tableData = isIncome ? (data || []).filter(({ income }) => income) : (data || []).filter(({ income }) => !income);
+  const tableData = isIncome ? data.filter(({ income }) => income) : data.filter(({ income }) => !income);
 
   useEffect(() => {
     dispatch(fetchTransactions());
   }, [dispatch]);
 
-  const handleDelete = (id, sum, income) => {
-    openModal();
-    dispatch(deleteTransaction({ id, sum, income }));
-  };
-
-  const handleConfirmDelete = () => {
-    // Извлекаем данные транзакции из состояния модального окна
-    const { id, sum, income } = modalData;
-
+  const handleConfirmDelete = (id, sum, income) => {
     // Выполняем удаление транзакции
     dispatch(deleteTransaction({ id, sum, income }));
 
@@ -38,14 +29,12 @@ export const TabletTable = () => {
     closeModal();
   };
 
-  const openModal = (id, sum, income) => {
-    setModalData({ id, sum, income });
+  const openModal = () => {
     setShowModal(true);
   }
 
   const closeModal = () => {
     setShowModal(false);
-    setModalData(null);
   }
 
   return (
@@ -77,7 +66,7 @@ export const TabletTable = () => {
               </StyledTd>
               <StyledTd>
                 <BtnBin>
-                <StyledButton onClick={() => {openModal(t._id, t.sum, t.income); handleDelete(t._id, t.sum, t.income)}}>
+                <StyledButton onClick={() => {openModal()}}>
                     <StyledSvg width="18" height="18">
                       <use href={`${Sprite}#bin`}></use>
                     </StyledSvg>
@@ -85,7 +74,7 @@ export const TabletTable = () => {
                 {showModal && (
                   <Modal
                     text="Are you sure ?"
-                    onConfirm={handleConfirmDelete}
+                    onConfirm={() => handleConfirmDelete(t._id, t.sum, t.income)}
                     onClose={closeModal}
                   />
                 )}

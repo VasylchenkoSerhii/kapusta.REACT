@@ -29,7 +29,7 @@ export const MobileProductPage = () => {
     number: '',
   };
 
-  const categories = ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
+  const categories = isIncome ? ['Salary', 'Income', 'Other'] : ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
 
   const handleSubmit = async (values, { resetForm }) => {
     if (values) {

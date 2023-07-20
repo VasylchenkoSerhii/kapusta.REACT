@@ -25,7 +25,7 @@ export default function CurrencyInput({ maskOptions, ...inputProps }) {
     <MaskedInput
       mask={currencyMask}
       {...inputProps}
-      placeholder='00.00 UAH'
+      // placeholder='00.00 UAH'
     />
   )
 }

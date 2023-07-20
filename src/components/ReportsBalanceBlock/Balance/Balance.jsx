@@ -25,7 +25,7 @@ export default function Balance() {
   };
 
   useEffect(() => {
-    setInputValue(balanceRedux ?? '00.00');
+    setInputValue(balanceRedux);
   }, [balanceRedux]);
 
   const handleSubmit = async () => {
