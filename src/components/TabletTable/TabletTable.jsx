@@ -13,9 +13,9 @@ export const TabletTable = () => {
   const location = useLocation();
   const isIncome = location.search.includes('income');
   const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(false);
+  const [modalStates, setModalStates] = useState({});
 
-  const tableData = isIncome ? data.filter(({ income }) => income) : data.filter(({ income }) => !income);
+  const tableData = isIncome ? (data || []).filter(({ income }) => income) : (data || []).filter(({ income }) => !income);
 
   useEffect(() => {
     dispatch(fetchTransactions());
@@ -26,15 +26,15 @@ export const TabletTable = () => {
     dispatch(deleteTransaction({ id, sum, income }));
 
     // Закрываем модальное окно
-    closeModal();
+    closeModal(id);
   };
 
-  const openModal = () => {
-    setShowModal(true);
+  const openModal = (id) => {
+    setModalStates((prev) => ({ ...prev, [id]: true }));
   }
 
-  const closeModal = () => {
-    setShowModal(false);
+  const closeModal = (id) => {
+    setModalStates((prev) => ({ ...prev, [id]: false }));
   }
 
   return (
@@ -66,16 +66,16 @@ export const TabletTable = () => {
               </StyledTd>
               <StyledTd>
                 <BtnBin>
-                <StyledButton onClick={() => {openModal()}}>
+                <StyledButton onClick={() => {openModal(t._id)}}>
                     <StyledSvg width="18" height="18">
                       <use href={`${Sprite}#bin`}></use>
                     </StyledSvg>
                 </StyledButton>
-                {showModal && (
+                {modalStates[t._id] && (
                   <Modal
                     text="Are you sure ?"
                     onConfirm={() => handleConfirmDelete(t._id, t.sum, t.income)}
-                    onClose={closeModal}
+                    onClose={() => closeModal(t._id)}
                   />
                 )}
                 </BtnBin>
