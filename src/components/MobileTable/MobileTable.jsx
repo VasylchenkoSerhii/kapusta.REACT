@@ -15,8 +15,7 @@ export const MobileTable = () => {
   const location = useLocation();
   const isIncome = location.search.includes('income');
   const dispatch = useDispatch();
-  // const [date, setDate] = useState(new Date());
-  const [showModal, setShowModal] = useState(false);
+  const [modalStates, setModalStates] = useState({});
 
   const tableData = isIncome ? (data || []).filter(({ income }) => income) : (data || []).filter(({ income }) => !income);
 
@@ -33,15 +32,15 @@ export const MobileTable = () => {
     dispatch(deleteTransaction({ id, sum, income }));
 
     // Закрываем модальное окно
-    closeModal();
+    closeModal(id);
   };
 
-  const openModal = () => {
-    setShowModal(true);
+  const openModal = (id) => {
+    setModalStates((prev) => ({ ...prev, [id]: true }));
   }
 
-  const closeModal = () => {
-    setShowModal(false);
+  const closeModal = (id) => {
+    setModalStates((prev) => ({ ...prev, [id]: false }));
   }
 
   // const onDateChange = date => {
@@ -66,14 +65,14 @@ export const MobileTable = () => {
           <ValueTransaction isIncome={isIncome}>
           {!isIncome ? (<span>- {t.sum} UAH</span>) : (<span>{t.sum} UAH</span>)}
           </ValueTransaction>
-          <Bin width="18" height="18" onClick={() => openModal()}>
+          <Bin width="18" height="18" onClick={() => { openModal(t._id) }}>
             <use href={`${Sprite}#bin`}></use>
           </Bin>
-          {showModal && (
+          {modalStates[t._id] && (
             <Modal
               text="Are you sure ?"
               onConfirm={() => handleConfirmDelete(t._id, t.sum, t.income)}
-              onClose={closeModal}
+              onClose={() => closeModal(t._id)}
             />
           )}
           </BlockTransaction>
