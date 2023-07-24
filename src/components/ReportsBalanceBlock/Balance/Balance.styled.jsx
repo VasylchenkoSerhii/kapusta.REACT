@@ -55,6 +55,11 @@ export const InputBalance = styled(Field)`
   background-color: transparent;
   border-radius: 22px 0px 0px 22px;
   border: 2px solid ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.black};
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: ${p => p.theme.lineHeights.heading};
   &::placeholder {
     color: ${p => p.theme.colors.black};
     font-family: ${p => p.theme.fonts.body};
@@ -73,19 +78,25 @@ export const ButtonBalance = styled.button`
   width: 142px;
   height: 44px;
   border-radius: 0px 22px 22px 0px;
-  border: 2px solid ${p => p.theme.colors.white};
-  color: ${p => p.theme.colors.text};
-  background-color: transparent;
+  border: 2px solid ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.white};
+  background-color: ${p => p.theme.colors.accent};
   font-family: ${p => p.theme.fonts.body};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.heading};
   text-transform: uppercase;
-  &:active {
-    background-color: ${p => p.theme.colors.accent};
-    color: ${p => p.theme.colors.white};
-    border-color: ${p => p.theme.colors.accent};
+  &:hover,&:focus {
+    background-color:  #f95f00;
+    /* color: ${p => p.theme.colors.white}; */
+    border-color:  #f95f00;
   }
+  &:disabled {
+    background-color: transparent;
+    border-color: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.text};
+  }
+
   @media screen and (min-width: 768px) {
     width: 125px;
     height: 44px;

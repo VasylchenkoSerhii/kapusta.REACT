@@ -10,6 +10,7 @@ import CurrencyInput from "shared/CurrencyInput/CurrencyInput";
 export default function Balance() {
   const dispatch = useDispatch();
   const balanceRedux = useSelector(getBalance);
+  const [isSent, setIsSent] = useState(localStorage.getItem('isSent') === 'true');
   const [inputValue, setInputValue] = useState(balanceRedux ?? '00.00');
   const [tooltipVisible, setTooltipVisible] = useState(true);
 
@@ -23,19 +24,27 @@ export default function Balance() {
   const initialValues = {
     balance: balanceRedux ?? '00.00',
   };
+  useEffect(() => {
+    localStorage.setItem('isSent', isSent); // Сохраняем значение isSent в localStorage
+  }, [isSent]);
 
   useEffect(() => {
     setInputValue(balanceRedux);
+    localStorage.setItem('balance', JSON.stringify(balanceRedux));
   }, [balanceRedux]);
 
   const handleSubmit = async () => {
     await dispatch(setBalance({ balance: inputValue }));
+    setIsSent(true);
     console.log(inputValue)
   };
 
   const handleInputChange = (e) => {
     setInputValue(+e.target.value.split(' ').join('').slice(0, -3));
-    setTooltipVisible(false); // Скрываем всплывающее сообщение при изменении значения
+    if (e.target.value === '0') {
+      setTooltipVisible(true); // Показать Tooltip, если значение равно '00.00'
+    }
+    setIsSent(false);
   };
 
   return (
@@ -52,24 +61,28 @@ export default function Balance() {
           type="text"
           id="balance"
           name="balance"
+          value={inputValue}
           placeholder={balanceRedux ? `${balanceRedux} UAH` : '00.00 UAH'}
           onChange={handleInputChange}
-          onFocus={() => setTooltipVisible(true)}
-          onBlur={() => setTooltipVisible(false)}
+          onFocus={() => setTooltipVisible(false)}
+          onBlur={() => setTooltipVisible(true)}
         />
         <ButtonBalance
           type="submit"
+          disabled={inputValue === '00.00' || !inputValue || isSent}
         >
           Confirm
         </ButtonBalance>
       </FormBalance>
       </Formik>
-    </BlockBalance>
+      </BlockBalance>
+      {(inputValue === '00.00' || !inputValue) && (
     <Tooltip show={tooltipVisible}>
       <ImageBg />
       <TitleMessageBg>Hello! To get started, enter the<br />current balance of your account!<br /></TitleMessageBg>
       <TextBg>You can't spend money until you have it :)</TextBg>
-    </Tooltip>
+        </Tooltip>
+         )}
     </Container>
   )
 }
