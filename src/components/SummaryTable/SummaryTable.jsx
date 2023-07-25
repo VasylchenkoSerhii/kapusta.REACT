@@ -1,4 +1,8 @@
+import { useLocation } from "react-router-dom";
 import { ContainerInfo, ContainerTable, HeaderTable, HeaderText, TableList } from "./SummaryTable.styled";
+import { useSelector } from "react-redux";
+import { getAllTransactions } from "redux/report/report-selectors";
+import { useMemo } from "react";
 
 const monthMap = [
   'January',
@@ -7,33 +11,39 @@ const monthMap = [
   'April',
   'May',
   'June',
-];
-const monthSum = [
-  '10 000',
-  '30 000',
-  '50 000',
-  '40 000',
-  '20 000',
-  '10 000',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 export const SummaryTable = () => {
-  const summaryData = {};
+  const data = useSelector(getAllTransactions);
+  const location = useLocation();
+  const isIncome = location.search.includes('income');
 
-  monthSum.forEach((sum, index) => {
-    const month = monthMap[index];
-    summaryData[month] = sum;
-  });
+  const tableData = useMemo(() => isIncome ? (data || []).filter(({ income }) => income) : (data || []).filter(({ income }) => !income),[isIncome, data]);
+
+  const summaryData = useMemo(() => {
+    return tableData.reduce((acc, { dateTransaction, sum }) => {
+      const month = new Date(dateTransaction).getMonth();
+      acc[month] = acc[month] ? acc[month] + sum : sum;
+
+      return acc;
+    },{})
+  },[tableData]);
 
   return (
     <TableList>
       <HeaderTable>
         <HeaderText>Summary</HeaderText>
       </HeaderTable>
-      {Object.entries(summaryData).map(([month, sum], index) => (
+      {Object.keys(summaryData).map((monthIndex, index) => (
       <ContainerTable key={index}>
-        <ContainerInfo>{month}</ContainerInfo>
-        <ContainerInfo>{sum}</ContainerInfo>
+        <ContainerInfo>{monthMap[monthIndex]}</ContainerInfo>
+        <ContainerInfo>{summaryData[monthIndex]}</ContainerInfo>
       </ContainerTable>
       ))}
     </TableList>
