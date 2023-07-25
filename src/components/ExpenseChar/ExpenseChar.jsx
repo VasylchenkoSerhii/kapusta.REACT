@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { useMediaQuery } from 'react-responsive';
+// import { useMediaQuery } from 'react-responsive';
 
 ChartJS.register(
   CategoryScale,
@@ -24,7 +24,7 @@ export default function ExpenseChar({ transactions }) {
   const descriptions = transactions.map(transaction => transaction.description);
   const sums = transactions.map(transaction => transaction.sum);
 
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  // const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const barData = {
     labels: descriptions,
