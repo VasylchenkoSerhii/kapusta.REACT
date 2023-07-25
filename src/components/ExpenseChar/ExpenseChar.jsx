@@ -9,6 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { useMediaQuery } from 'react-responsive';
 
 ChartJS.register(
   CategoryScale,
@@ -23,13 +24,15 @@ export default function ExpenseChar({ transactions }) {
   const descriptions = transactions.map(transaction => transaction.description);
   const sums = transactions.map(transaction => transaction.sum);
 
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   const barData = {
     labels: descriptions,
     datasets: [
       {
         label: 'Sum',
         data: sums,
-        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        backgroundColor: '#FF751D',
       },
     ],
   };
@@ -55,17 +58,24 @@ export default function ExpenseChar({ transactions }) {
       x: {
         type: 'category',
         beginAtZero: true,
+        grid: {
+          display: false,
+        },
       },
       y: {
+        display: true,
         beginAtZero: true,
         grid: {
           display: true,
-          offset: true,
-          drawBorder: false,
         },
         ticks: {
           display: false,
         },
+      },
+    },
+    datasets: {
+      bar: {
+        barThickness: 38,
       },
     },
   };
