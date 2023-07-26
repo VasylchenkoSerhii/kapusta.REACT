@@ -5,14 +5,14 @@ import 'react-calendar/dist/Calendar.css';
 
 export const CalendarComponent = ({date,setDate}) => {
   const [showCalendar, setShowCalendar] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  // const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleCalendarToggle = () => {
     setShowCalendar(!showCalendar);
   };
 
-  const handleDateChange = () => {
-    setSelectedDate(date);
+  const handleDateChange = (date) => {
+    // sessionStorage.setItem('transactionDate', date.toString());
     setDate(date);
     setShowCalendar(false);
   };
@@ -21,11 +21,11 @@ export const CalendarComponent = ({date,setDate}) => {
     <BalockCalendar>
       <ButtonCalendar onClick={handleCalendarToggle}>
         <CalendarImage/>
-        <CalendarDate>{selectedDate.toLocaleDateString()}</CalendarDate>
+        <CalendarDate>{date.toLocaleDateString()}</CalendarDate>
       </ButtonCalendar>
       {showCalendar && (
         <ViewCalendar>
-          <Calendar onChange={handleDateChange} value={selectedDate} />
+          <Calendar onChange={handleDateChange} value={date} />
         </ViewCalendar>
       )}
     </BalockCalendar>

@@ -21,24 +21,6 @@ export default function Balance() {
 
   return (
     <Section>
-      {/* <Hero>
-        <ToTransaction />
-        <ReportsBalanceBlock />
-        <ExpIncNavigation/>
-        <BlockExpInc>
-        <div>
-          <BlockProduct>
-            <CalendarComponent />
-            <TabletForm/>
-          </BlockProduct>
-          <div>
-              <TabletTable />
-              <SummaryTable/>
-          </div>
-        </div>
-        </BlockExpInc>
-        {isMobile && <MobileTable />}
-      </Hero> */}
       {isMobile ? (
         <Hero>
           <ToTransaction />
@@ -53,7 +35,6 @@ export default function Balance() {
           <BlockExpInc>
             <div>
               <BlockProduct>
-                {/* <CalendarComponent /> */}
                   <TabletForm />
                   {!isTablet ? (
                     <ContainerDesktop>
