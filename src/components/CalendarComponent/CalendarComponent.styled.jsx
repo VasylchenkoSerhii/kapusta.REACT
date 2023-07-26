@@ -44,4 +44,10 @@ export const ViewCalendar = styled.div`
   border-radius: 10px;
   top: 60px;
   z-index: 999;
+  @media screen and (min-width: 768px) {
+    left: 40px;
+  }
+  @media screen and (min-width: 1200px) {
+    left: 30px;
+  }
 `;

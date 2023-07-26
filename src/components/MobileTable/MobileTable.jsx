@@ -16,6 +16,7 @@ export const MobileTable = () => {
   const isIncome = location.search.includes('income');
   const dispatch = useDispatch();
   const [modalStates, setModalStates] = useState({});
+   const [date, setDate] = useState(new Date());
 
   const tableData = isIncome ? (data || []).filter(({ income }) => income) : (data || []).filter(({ income }) => !income);
 
@@ -43,14 +44,14 @@ export const MobileTable = () => {
     setModalStates((prev) => ({ ...prev, [id]: false }));
   }
 
-  // const onDateChange = date => {
-  //   sessionStorage.setItem('transactionDate', date.toString());
-  //   setDate(date);
-  // };
+  const onDateChange = date => {
+    sessionStorage.setItem('transactionDate', date.toString());
+    setDate(date);
+  };
 
   return (
     <>
-      <CalendarComponent/>
+      <CalendarComponent date={date} setDate={onDateChange} />
       <TableList>
         {tableData.map(t => (
         <li key={t._id}>
