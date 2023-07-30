@@ -16,10 +16,13 @@ export default function App() {
   const dispatch = useDispatch();
 
   const isRefresh = useSelector(getIsRefresh);
+  const token = localStorage.getItem('persist:auth');
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (token) {
+      dispatch(refreshUser());
+    }
+  }, [dispatch, token]);
 
   return isRefresh ? (
     <Refresh>Refreshing user...</Refresh>
@@ -44,8 +47,6 @@ export default function App() {
           path='/reports'
           element={<PrivateRoute component={Reports} redirectTo='/' />}
         />
-        {/* <Route path='/mobile-product-page' element={<MobileProductPage />} /> */}
-        {/* <Route path='/balance/reports' element={<Reports />} /> */}
       </Route>
     </Routes>
   );
