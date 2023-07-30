@@ -4,6 +4,9 @@ export const Section = styled.section`
   padding-top: 32px;
   padding-bottom: 40px;
   font-family: ${p => p.theme.fonts.bodu};
+  @media screen and (min-width: 768px) {
+    padding-bottom: 16px;
+  }
 `;
 
 export const MainWrapper = styled.div`

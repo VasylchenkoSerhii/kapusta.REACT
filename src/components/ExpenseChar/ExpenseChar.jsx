@@ -9,7 +9,8 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-// import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from 'react-responsive';
+import { CharContainer, Section } from './ExpenseChar.styled';
 
 ChartJS.register(
   CategoryScale,
@@ -24,7 +25,7 @@ export default function ExpenseChar({ transactions }) {
   const descriptions = transactions.map(transaction => transaction.description);
   const sums = transactions.map(transaction => transaction.sum);
 
-  // const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const barData = {
     labels: descriptions,
@@ -33,17 +34,36 @@ export default function ExpenseChar({ transactions }) {
         label: 'Sum',
         data: sums,
         backgroundColor: '#FF751D',
+        datalabels: {
+          display: true,
+          anchor: isMobile ? 'end' : 'end', // Змінюємо якщо орієнтація горизонтальна
+          align: 'top',
+          color: 'black',
+          font: { weight: 'bold' },
+          formatter: value => `${value} UAH`,
+        },
       },
     ],
   };
 
   const options = {
     responsive: true,
+    borderRadius: 10,
+    // layout: {
+    //   padding: {
+    //     top: 70,
+    //   },
+    // },
     plugins: {
       legend: {
         display: false,
       },
-      // Додаємо налаштування плагіну datalabels для відображення суми над стовпчиками
+      tooltip: {
+        enabled: false,
+        callbacks: {
+          label: context => `Сумма транзакції: ${context.parsed.y} UAH`,
+        },
+      },
       datalabels: {
         anchor: 'end',
         align: 'top',
@@ -52,14 +72,19 @@ export default function ExpenseChar({ transactions }) {
           weight: 'bold',
         },
         formatter: value => `${value} UAH`,
+        display: 'auto',
       },
     },
+
     scales: {
       x: {
         type: 'category',
         beginAtZero: true,
         grid: {
           display: false,
+        },
+        ticks: {
+          display: isMobile ? false : true,
         },
       },
       y: {
@@ -69,16 +94,24 @@ export default function ExpenseChar({ transactions }) {
           display: true,
         },
         ticks: {
-          display: false,
+          display: isMobile ? true : false,
+          position: 'top',
         },
       },
     },
     datasets: {
       bar: {
-        barThickness: 38,
+        barThickness: isMobile ? 15 : 38,
       },
     },
+    indexAxis: isMobile ? 'y' : 'x',
   };
 
-  return <Bar data={barData} options={options} />;
+  return (
+    <Section>
+      <CharContainer>
+        <Bar data={barData} options={options} />
+      </CharContainer>
+    </Section>
+  );
 }
