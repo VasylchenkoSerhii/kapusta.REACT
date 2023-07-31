@@ -11,6 +11,7 @@ export default function Reports() {
     { description: 'Vodka', sum: 30 },
     { description: 'Rum', sum: 20 },
   ];
+
   return (
     <Main>
       <BalanceSummary />

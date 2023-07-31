@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { getBalance } from 'redux/auth/auth-selector';
 import Sprite from '../../images/currentPeriod.svg';
 import {
   BalanceValye,
@@ -24,6 +26,8 @@ import {
 } from './BalanceSummary.styled';
 
 export default function BalanceSummary() {
+  const balance = useSelector(getBalance);
+
   return (
     <Section>
       <WrapperForTabletGroup>
@@ -55,7 +59,11 @@ export default function BalanceSummary() {
           <BalanceGroupWrapper>
             <BalanceSubheading>Balance:</BalanceSubheading>
             <BalanceWrapper>
-              <BalanceValye>55 000.00 UAH</BalanceValye>
+              {balance !== null ? (
+                <BalanceValye>{balance} UAH</BalanceValye>
+              ) : (
+                <BalanceValye>0 UAH</BalanceValye>
+              )}
             </BalanceWrapper>
           </BalanceGroupWrapper>
         </WrapperPeriodAndBalance>
