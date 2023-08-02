@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getBalance } from 'redux/auth/auth-selector';
+import { format, addMonths, subMonths, parseISO } from 'date-fns';
 import Sprite from '../../images/currentPeriod.svg';
 import {
   BalanceValye,
@@ -28,6 +30,22 @@ import {
 export default function BalanceSummary() {
   const balance = useSelector(getBalance);
 
+  const getCurrentMonthAndYear = () => {
+    const currentDate = new Date();
+    const currentMonthAndYear = format(currentDate, 'yyyy-MM');
+    return currentMonthAndYear;
+  };
+
+  const [date, setDate] = useState(getCurrentMonthAndYear);
+
+  const goToPreviousMonth = () => {
+    setDate(prevDate => format(subMonths(parseISO(prevDate), 1), 'yyyy-MM'));
+  };
+
+  const goToNextMonth = () => {
+    setDate(prevDate => format(addMonths(parseISO(prevDate), 1), 'yyyy-MM'));
+  };
+
   return (
     <Section>
       <WrapperForTabletGroup>
@@ -43,13 +61,13 @@ export default function BalanceSummary() {
           <WrapperPeriod>
             <PeriodSubheading>Current period:</PeriodSubheading>
             <PeriodContainer>
-              <PeriodBtn type='button'>
+              <PeriodBtn type='button' onClick={goToPreviousMonth}>
                 <svg width={6} height={15}>
                   <use href={`${Sprite}#icon-arrow-left`}></use>
                 </svg>
               </PeriodBtn>
-              <Period>November 2019</Period>
-              <PeriodBtn type='button'>
+              <Period>{format(parseISO(date), 'MMMM yyyy')}</Period>
+              <PeriodBtn type='button' onClick={goToNextMonth}>
                 <svg width={6} height={15}>
                   <use href={`${Sprite}#icon-arrow-right`}></use>
                 </svg>
