@@ -111,6 +111,7 @@ export const BalanceSubheading = styled.p`
 export const PeriodContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   min-width: 142px;
   margin-left: auto;
   margin-right: auto;
