@@ -6,7 +6,7 @@ import {
 } from './report-operations';
 
 export const initialState = {
-  allTransaction: [],
+  allTransactions: [],
   totalReportObject: null,
   selectedCashflow: 'Income',
   selectedCategory: '',
