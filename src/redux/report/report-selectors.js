@@ -8,3 +8,6 @@ export const getTotalExpenses = state =>
   state.report.totalReportObject.expenses.totalSum;
 export const getAllTransactions = state => state.report.allTransactions;
 export const getError = state => state.report.error;
+export const getCurrentDate = state => state.report.currentDate;
+export const getCurrentMonthTransactions = state =>
+  state.report.currentMonthTransactions;

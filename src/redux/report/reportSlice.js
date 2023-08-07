@@ -2,14 +2,17 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addTransaction,
   deleteTransaction,
+  fetchCurrentMonthTransactions,
   fetchTransactions,
 } from './report-operations';
 
 export const initialState = {
   allTransactions: [],
+  currentMonthTransactions: [],
   totalReportObject: null,
   selectedCashflow: 'Income',
   selectedCategory: '',
+  currentDate: '',
   error: null,
 };
 
@@ -22,6 +25,9 @@ const reportSlice = createSlice({
     },
     setSelectedCategory: (state, action) => {
       state.selectedCategory = action.payload;
+    },
+    setCurrentDate: (state, action) => {
+      state.currentDate = action.payload;
     },
   },
   extraReducers: {
@@ -45,9 +51,17 @@ const reportSlice = createSlice({
         t => t._id !== action.payload
       );
     },
+    [fetchCurrentMonthTransactions.rejected](state, action) {
+      console.log('not allowed transaction');
+      state.error = action.payload;
+    },
+    [fetchCurrentMonthTransactions.fulfilled](state, action) {
+      state.currentMonthTransactions = action.payload.data;
+    },
   },
 });
 
-export const { setSelectedCashflow, setSelectedCategory } = reportSlice.actions;
+export const { setSelectedCashflow, setSelectedCategory, setCurrentDate } =
+  reportSlice.actions;
 
 export const reportReducer = reportSlice.reducer;
