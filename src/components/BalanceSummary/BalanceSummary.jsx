@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getBalance } from 'redux/auth/auth-selector';
 import { format, addMonths, subMonths, parseISO } from 'date-fns';
 import Sprite from '../../images/currentPeriod.svg';
@@ -26,9 +26,11 @@ import {
   BackLinkIcon,
   BalanceGroupWrapper,
 } from './BalanceSummary.styled';
+import { setCurrentDate } from 'redux/report/reportSlice';
 
 export default function BalanceSummary() {
   const balance = useSelector(getBalance);
+  const dispatch = useDispatch();
 
   const getCurrentMonthAndYear = () => {
     const currentDate = new Date();
@@ -37,6 +39,12 @@ export default function BalanceSummary() {
   };
 
   const [date, setDate] = useState(getCurrentMonthAndYear);
+
+  useEffect(() => {
+    const year = format(parseISO(date), 'yyyy');
+    const currentMonth = format(parseISO(date), 'MM');
+    dispatch(setCurrentDate({ year, currentMonth }));
+  }, [date, dispatch]);
 
   const goToPreviousMonth = () => {
     setDate(prevDate => format(subMonths(parseISO(prevDate), 1), 'yyyy-MM'));

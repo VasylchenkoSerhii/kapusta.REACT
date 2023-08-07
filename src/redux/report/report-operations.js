@@ -57,3 +57,16 @@ export const fetchTransactions = createAsyncThunk(
     }
   }
 );
+
+export const fetchCurrentMonthTransactions = createAsyncThunk(
+  'report/CurrentMonthTransactions',
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { currentDate } = getState().report;
+      const res = await axios.post('/transactions/fullStatistics', currentDate);
+      return res;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
