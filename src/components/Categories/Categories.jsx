@@ -15,23 +15,7 @@ import {
   WrapperExpenses,
 } from './Categories.styled';
 
-export default function Categories() {
-  const categories = [
-    'Transport',
-    'Products',
-    'Health',
-    'Alcohol',
-    'Entertainment',
-    'Housing',
-    'Technique',
-    'Communal, communication',
-    'Sports, hobbies',
-    'Education',
-    'Other',
-  ];
-
-  const income = ['salary', 'other'];
-
+export default function Categories({ expenses, income }) {
   const [activeCategory, setActiveCategory] = useState('expenses');
 
   const handleExpensesClick = () => {
@@ -76,30 +60,32 @@ export default function Categories() {
         </WrapperExpenses>
         <CategoriesList>
           {activeCategory === 'expenses'
-            ? categories.map((el, index) => (
+            ? expenses &&
+              expenses.map(({ category, sum }, index) => (
                 <CategoriesItem key={index}>
-                  <CategoriesSum>5 000.00</CategoriesSum>
+                  <CategoriesSum>{sum}</CategoriesSum>
                   <CategoriesBtn type='button'>
                     <BackgroundIcon>
                       <CategoriesIcon width={56} height={56}>
-                        <use href={`${Sprite}#${el.toLowerCase()}`}></use>
+                        <use href={`${Sprite}#${category.toLowerCase()}`}></use>
                       </CategoriesIcon>
                     </BackgroundIcon>
                   </CategoriesBtn>
-                  <CategoriesName>{el}</CategoriesName>
+                  <CategoriesName>{category}</CategoriesName>
                 </CategoriesItem>
               ))
-            : income.map((el, index) => (
+            : income &&
+              income.map(({ category, sum }, index) => (
                 <CategoriesItem key={index}>
-                  <CategoriesSum>5 000.00</CategoriesSum>
+                  <CategoriesSum>{sum}</CategoriesSum>
                   <CategoriesBtn type='button'>
                     <BackgroundIcon>
                       <CategoriesIcon width={56} height={56}>
-                        <use href={`${Sprite}#${el.toLowerCase()}`}></use>
+                        <use href={`${Sprite}#${category.toLowerCase()}`}></use>
                       </CategoriesIcon>
                     </BackgroundIcon>
                   </CategoriesBtn>
-                  <CategoriesName>{el}</CategoriesName>
+                  <CategoriesName>{category}</CategoriesName>
                 </CategoriesItem>
               ))}
         </CategoriesList>

@@ -28,7 +28,7 @@ import {
 } from './BalanceSummary.styled';
 import { setCurrentDate } from 'redux/report/reportSlice';
 
-export default function BalanceSummary() {
+export default function BalanceSummary({ expensesSum, incomeSum }) {
   const balance = useSelector(getBalance);
   const dispatch = useDispatch();
 
@@ -97,11 +97,11 @@ export default function BalanceSummary() {
       <ExpensesIncomeList>
         <ExpensesIncomeItem>
           <ExpensesIncome>Expenses:</ExpensesIncome>
-          <Expenses>- 18 000.00 UAH</Expenses>
+          <Expenses>- {expensesSum} UAH</Expenses>
         </ExpensesIncomeItem>
         <ExpensesIncomeItem>
           <ExpensesIncome>Income:</ExpensesIncome>
-          <Income>+ 45 000.00 UAH</Income>
+          <Income>+ {incomeSum} UAH</Income>
         </ExpensesIncomeItem>
       </ExpensesIncomeList>
     </Section>
