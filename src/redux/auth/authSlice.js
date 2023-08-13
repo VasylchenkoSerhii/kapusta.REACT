@@ -6,6 +6,7 @@ import {
   register,
   setBalance,
 } from './auth-operations';
+import { authToken } from 'API';
 
 export const initialState = {
   user: {
@@ -27,6 +28,15 @@ const authSlice = createSlice({
   reducers: {
     changeBalance(state, { payload }) {
       state.user.balance = payload;
+    },
+    setGoogleAuth(state, { payload }) {
+      const { email, token, balance } = payload;
+      authToken.set(token);
+      state.user = { email: email, balance: balance };
+      state.isLoginApiDone = true;
+      state.accessToken = token;
+      state.isLoading = false;
+      state.isLoggedIn = true;
     },
   },
   extraReducers: builder => {
@@ -95,4 +105,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { changeBalance } = authSlice.actions;
+export const { changeBalance, setGoogleAuth } = authSlice.actions;

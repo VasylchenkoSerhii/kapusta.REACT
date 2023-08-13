@@ -16,8 +16,26 @@ import {
 import Sprite from '../../images/cabagge/sprite.svg';
 import { useDispatch } from 'react-redux';
 import { register, login } from 'redux/auth/auth-operations';
+import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { setGoogleAuth } from 'redux/auth/authSlice';
 
 export default function AuthForm() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const email = searchParams.get('email');
+    const token = searchParams.get('token');
+    const balance = searchParams.get('balance');
+
+    if (email && token && balance) {
+      dispatch(setGoogleAuth({ email, token, balance }));
+      setSearchParams('', { replace: true });
+    }
+  }, [searchParams, dispatch, setSearchParams]);
+
   const validationSchema = yup.object().shape({
     email: yup
       .string()
@@ -31,8 +49,6 @@ export default function AuthForm() {
       .min(8, 'Password should be at least 8 characters long')
       .required('Password is required'),
   });
-
-  const dispatch = useDispatch();
 
   let submitAction = null;
 
@@ -50,6 +66,11 @@ export default function AuthForm() {
     }
   };
 
+   const handleButtonClick = () => {
+    // Изменяем window.location.href для перехода
+    window.location.href = 'https://kapusta-es4s.onrender.com/users/google';
+  };
+
   return (
     <Formik
       initialValues={{
@@ -61,7 +82,7 @@ export default function AuthForm() {
     >
       <MainForm>
         <FormText>You can log in with your Google Account:</FormText>
-        <GoogleBtn type='button'>
+        <GoogleBtn type='button' onClick={handleButtonClick}>
           <svg width={18} height={18}>
             <use href={`${Sprite}#google-icon`}></use>
           </svg>
