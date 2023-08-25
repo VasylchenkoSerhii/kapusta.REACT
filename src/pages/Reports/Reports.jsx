@@ -8,6 +8,7 @@ import { fetchCurrentMonthTransactions } from 'redux/report/report-operations';
 import {
   getCurrentDate,
   getCurrentMonthTransactions,
+  getSelectedCategory,
 } from 'redux/report/report-selectors';
 
 export default function Reports() {
@@ -18,6 +19,7 @@ export default function Reports() {
   }, [dispatch, currentDate]);
 
   const currentTrasactions = useSelector(getCurrentMonthTransactions);
+  const transactions = useSelector(getSelectedCategory);
   const {
     expenses: {
       totalSum: expensesTotalSum,
@@ -26,14 +28,6 @@ export default function Reports() {
     income: { totalSum: incomeTotalSum, categories: incomeCategories } = {},
   } = currentTrasactions;
 
-  const alcoholExpenses = [
-    { description: 'Wine', sum: 25 },
-    { description: 'Beer', sum: 15 },
-    { description: 'Whiskey', sum: 40 },
-    { description: 'Vodka', sum: 30 },
-    { description: 'Rum', sum: 20 },
-  ];
-
   return (
     <Main>
       <BalanceSummary
@@ -41,7 +35,7 @@ export default function Reports() {
         incomeSum={incomeTotalSum || 0}
       />
       <Categories expenses={expensesCategories} income={incomeCategories} />
-      <ExpenseChar transactions={alcoholExpenses} />
+      {transactions && <ExpenseChar transactions={transactions} />}
     </Main>
   );
 }

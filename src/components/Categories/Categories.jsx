@@ -14,9 +14,13 @@ import {
   Section,
   WrapperExpenses,
 } from './Categories.styled';
+import { useDispatch } from 'react-redux';
+import { setSelectedCategory } from 'redux/report/reportSlice';
 
 export default function Categories({ expenses, income }) {
   const [activeCategory, setActiveCategory] = useState('expenses');
+
+  const dispatch = useDispatch();
 
   const handleExpensesClick = () => {
     setActiveCategory('expenses');
@@ -24,6 +28,18 @@ export default function Categories({ expenses, income }) {
 
   const handleIncomeClick = () => {
     setActiveCategory('income');
+  };
+
+  const handleClick = category => {
+    let selectedCategory;
+    if (activeCategory === 'expenses') {
+      selectedCategory = expenses.filter(el => el.category === category);
+      dispatch(setSelectedCategory(selectedCategory[0].descriptions));
+    }
+    if (activeCategory === 'income') {
+      selectedCategory = income.filter(el => el.category === category);
+      dispatch(setSelectedCategory(selectedCategory[0].descriptions));
+    }
   };
 
   return (
@@ -64,7 +80,10 @@ export default function Categories({ expenses, income }) {
               expenses.map(({ category, sum }, index) => (
                 <CategoriesItem key={index}>
                   <CategoriesSum>{sum}</CategoriesSum>
-                  <CategoriesBtn type='button'>
+                  <CategoriesBtn
+                    type='button'
+                    onClick={() => handleClick(category)}
+                  >
                     <BackgroundIcon>
                       <CategoriesIcon width={56} height={56}>
                         <use href={`${Sprite}#${category.toLowerCase()}`}></use>
