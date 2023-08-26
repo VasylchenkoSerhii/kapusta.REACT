@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Sprite from '../../images/currentPeriod.svg';
 import {
   BackgroundIcon,
@@ -14,11 +14,15 @@ import {
   Section,
   WrapperExpenses,
 } from './Categories.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedCategory } from 'redux/report/reportSlice';
+import { getCurrentDate } from 'redux/report/report-selectors';
 
 export default function Categories({ expenses, income }) {
   const [activeCategory, setActiveCategory] = useState('expenses');
+  const [firstCategorySelected, setFirstCategorySelected] = useState(false);
+  const currentDate = useSelector(getCurrentDate);
+  console.log(currentDate);
 
   const dispatch = useDispatch();
 
@@ -30,17 +34,32 @@ export default function Categories({ expenses, income }) {
     setActiveCategory('income');
   };
 
-  const handleClick = category => {
-    let selectedCategory;
-    if (activeCategory === 'expenses') {
-      selectedCategory = expenses.filter(el => el.category === category);
-      dispatch(setSelectedCategory(selectedCategory[0].descriptions));
+  const handleClick = useCallback(
+    category => {
+      let selectedCategory;
+      if (activeCategory === 'expenses') {
+        selectedCategory = expenses.filter(el => el.category === category);
+        dispatch(setSelectedCategory(selectedCategory[0].descriptions));
+      }
+      if (activeCategory === 'income') {
+        selectedCategory = income.filter(el => el.category === category);
+        dispatch(setSelectedCategory(selectedCategory[0].descriptions));
+      }
+    },
+    [activeCategory, dispatch, expenses, income]
+  );
+
+  useEffect(() => {
+    if (!firstCategorySelected) {
+      if (activeCategory === 'expenses') {
+        handleClick(expenses[0].category);
+      }
+      if (activeCategory === 'income') {
+        handleClick(income[0].category);
+      }
+      setFirstCategorySelected(true);
     }
-    if (activeCategory === 'income') {
-      selectedCategory = income.filter(el => el.category === category);
-      dispatch(setSelectedCategory(selectedCategory[0].descriptions));
-    }
-  };
+  }, [activeCategory, expenses, income, firstCategorySelected, handleClick]);
 
   return (
     <Section>
