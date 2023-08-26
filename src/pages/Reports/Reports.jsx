@@ -19,6 +19,7 @@ export default function Reports() {
   }, [dispatch, currentDate]);
 
   const currentTrasactions = useSelector(getCurrentMonthTransactions);
+
   const transactions = useSelector(getSelectedCategory);
   const {
     expenses: {
@@ -34,7 +35,9 @@ export default function Reports() {
         expensesSum={expensesTotalSum || 0}
         incomeSum={incomeTotalSum || 0}
       />
-      <Categories expenses={expensesCategories} income={incomeCategories} />
+      {(expensesCategories || incomeCategories) && (
+        <Categories expenses={expensesCategories} income={incomeCategories} />
+      )}
       {transactions && <ExpenseChar transactions={transactions} />}
     </Main>
   );
