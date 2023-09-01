@@ -14,24 +14,30 @@ import {
   Section,
   WrapperExpenses,
 } from './Categories.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedCategory } from 'redux/report/reportSlice';
-import { getCurrentDate } from 'redux/report/report-selectors';
+import { useDispatch } from 'react-redux';
+import {
+  setSelectedCategory,
+  clearSelectedCategory,
+} from 'redux/report/reportSlice';
 
 export default function Categories({ expenses, income }) {
   const [activeCategory, setActiveCategory] = useState('expenses');
   const [firstCategorySelected, setFirstCategorySelected] = useState(false);
-  const currentDate = useSelector(getCurrentDate);
-  console.log(currentDate);
 
   const dispatch = useDispatch();
 
   const handleExpensesClick = () => {
     setActiveCategory('expenses');
+    if (!expenses) {
+      dispatch(clearSelectedCategory());
+    }
   };
 
   const handleIncomeClick = () => {
     setActiveCategory('income');
+    if (!income) {
+      dispatch(clearSelectedCategory());
+    }
   };
 
   const handleClick = useCallback(
@@ -50,11 +56,15 @@ export default function Categories({ expenses, income }) {
   );
 
   useEffect(() => {
+    setFirstCategorySelected(false);
+  }, [activeCategory, expenses, income]);
+
+  useEffect(() => {
     if (!firstCategorySelected) {
-      if (activeCategory === 'expenses') {
+      if (activeCategory === 'expenses' && expenses) {
         handleClick(expenses[0].category);
       }
-      if (activeCategory === 'income') {
+      if (activeCategory === 'income' && income) {
         handleClick(income[0].category);
       }
       setFirstCategorySelected(true);
@@ -116,7 +126,10 @@ export default function Categories({ expenses, income }) {
               income.map(({ category, sum }, index) => (
                 <CategoriesItem key={index}>
                   <CategoriesSum>{sum}</CategoriesSum>
-                  <CategoriesBtn type='button'>
+                  <CategoriesBtn
+                    type='button'
+                    onClick={() => handleClick(category)}
+                  >
                     <BackgroundIcon>
                       <CategoriesIcon width={56} height={56}>
                         <use href={`${Sprite}#${category.toLowerCase()}`}></use>
