@@ -28,6 +28,10 @@ const reportSlice = createSlice({
     },
     setCurrentDate: (state, action) => {
       state.currentDate = action.payload;
+      state.selectedCategory = '';
+    },
+    clearSelectedCategory: state => {
+      state.selectedCategory = '';
     },
   },
   extraReducers: {
@@ -61,7 +65,11 @@ const reportSlice = createSlice({
   },
 });
 
-export const { setSelectedCashflow, setSelectedCategory, setCurrentDate } =
-  reportSlice.actions;
+export const {
+  setSelectedCashflow,
+  setSelectedCategory,
+  setCurrentDate,
+  clearSelectedCategory,
+} = reportSlice.actions;
 
 export const reportReducer = reportSlice.reducer;
