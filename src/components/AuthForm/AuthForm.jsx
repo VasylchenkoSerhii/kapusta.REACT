@@ -22,7 +22,6 @@ import { setGoogleAuth } from 'redux/auth/authSlice';
 
 export default function AuthForm() {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,22 +51,21 @@ export default function AuthForm() {
 
   let submitAction = null;
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     if (submitAction === 'register') {
-      dispatch(register(values));
+      await dispatch(register(values));
       setSubmitting(false);
       resetForm();
       return;
     }
     if (submitAction === 'login') {
-      dispatch(login(values));
+      await dispatch(login(values));
       setSubmitting(false);
       resetForm();
     }
   };
 
-   const handleButtonClick = () => {
-    // Изменяем window.location.href для перехода
+  const handleButtonClick = () => {
     window.location.href = 'https://kapusta-es4s.onrender.com/users/google';
   };
 

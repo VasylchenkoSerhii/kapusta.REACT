@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 const { createAsyncThunk } = require('@reduxjs/toolkit');
 
 axios.defaults.baseURL = 'https://kapusta-es4s.onrender.com';
@@ -17,8 +18,11 @@ export const register = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/register', credentials);
+      toast.success('successful registration');
       return data;
     } catch (error) {
+      if (error.response.status === 400)
+        toast.error('a user with this address already exists');
       return rejectWithValue(error.message);
     }
   }
@@ -30,8 +34,11 @@ export const login = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/login', credentials);
       token.set(data.token);
+      toast.success('successful login');
       return data;
     } catch (error) {
+      if (error.response.status === 400 || error.response.status === 401)
+        toast.error('Invalid login or password');
       return rejectWithValue(error.message);
     }
   }
