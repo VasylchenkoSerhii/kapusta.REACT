@@ -19,9 +19,7 @@ export default function Reports() {
   }, [dispatch, currentDate]);
 
   const currentTrasactions = useSelector(getCurrentMonthTransactions);
-
   const transactions = useSelector(getSelectedCategory);
-  console.log(transactions);
   const {
     expenses: {
       totalSum: expensesTotalSum,

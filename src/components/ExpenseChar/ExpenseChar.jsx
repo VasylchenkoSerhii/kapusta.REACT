@@ -34,57 +34,32 @@ export default function ExpenseChar({ transactions }) {
         label: 'Sum',
         data: sums,
         backgroundColor: '#FF751D',
-        datalabels: {
-          display: true,
-          anchor: isMobile ? 'end' : 'end', // Змінюємо якщо орієнтація горизонтальна
-          align: 'top',
-          color: 'black',
-          font: { weight: 'bold' },
-          formatter: value => `${value} UAH`,
-        },
+        borderWidth: 1,
+        barThickness: isMobile ? 15 : 38,
+        borderRadius: 10,
       },
     ],
   };
 
   const options = {
     responsive: true,
-    borderRadius: 10,
-    // layout: {
-    //   padding: {
-    //     top: 70,
-    //   },
-    // },
     plugins: {
       legend: {
         display: false,
       },
-      tooltip: {
-        enabled: false,
-        callbacks: {
-          label: context => `Сумма транзакції: ${context.parsed.y} UAH`,
-        },
-      },
-      datalabels: {
-        anchor: 'end',
-        align: 'top',
-        color: 'black',
-        font: {
-          weight: 'bold',
-        },
-        formatter: value => `${value} UAH`,
-        display: 'auto',
-      },
     },
-
     scales: {
       x: {
-        type: 'category',
         beginAtZero: true,
         grid: {
           display: false,
         },
         ticks: {
           display: isMobile ? false : true,
+          callback: (_, index) => {
+            const sum = sums[index];
+            return `${sum} UAH`;
+          },
         },
       },
       y: {
@@ -95,13 +70,7 @@ export default function ExpenseChar({ transactions }) {
         },
         ticks: {
           display: isMobile ? true : false,
-          position: 'top',
         },
-      },
-    },
-    datasets: {
-      bar: {
-        barThickness: isMobile ? 15 : 38,
       },
     },
     indexAxis: isMobile ? 'y' : 'x',
