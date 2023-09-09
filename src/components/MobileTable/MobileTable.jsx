@@ -1,7 +1,7 @@
 import { useDispatch, useSelector} from "react-redux";
 import { useLocation } from "react-router-dom";
 import Sprite from '../../images/sprite.svg';
-import { Bin, BlockTransaction, Info, InfoTransaction, Name, TableList, ValueTransaction } from "./MobileTable.styled";
+import { Bin, BlockTransaction, Info, InfoTransaction, Name, TableItem, TableList, ValueTransaction } from "./MobileTable.styled";
 import { useEffect } from "react";
 import { deleteTransaction, fetchTransactions } from "redux/report/report-operations";
 // import { getAllTransactions } from "redux/report/report-selectors";
@@ -54,7 +54,7 @@ export const MobileTable = () => {
       <CalendarComponent date={date} setDate={onDateChange} />
       <TableList>
         {tableData.map(t => (
-        <li key={t._id}>
+        <TableItem key={t._id}>
           <BlockTransaction>
           <div>
             <Name>{t.description}</Name>
@@ -77,7 +77,7 @@ export const MobileTable = () => {
             />
           )}
           </BlockTransaction>
-        </li>
+        </TableItem>
          ))}
       </TableList>
     </>

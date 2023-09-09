@@ -16,7 +16,7 @@ export default function Balance() {
 
   const validationSchema = yup.object().shape({
     balance: yup
-      .string()
+      .number()
       .min(1, 'Balance should be at least 1 characters long')
       .required('Balance is required'),
   });
@@ -58,7 +58,7 @@ export default function Balance() {
         <InputBalance
           // mask={currencyMask}
           as={CurrencyInput}
-          type="text"
+          type="number"
           id="balance"
           name="balance"
           value={inputValue}

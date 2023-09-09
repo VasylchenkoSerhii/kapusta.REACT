@@ -29,7 +29,7 @@ export const MobileProductPage = () => {
     number: '',
   };
 
-  const categories = isIncome ? ['Salary', 'Income', 'Other'] : ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
+  const categories = isIncome ? ['Salary', 'Income'] : ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
 
   const handleSubmit = async (values, { resetForm }) => {
     if (values) {
@@ -104,6 +104,7 @@ export const MobileProductPage = () => {
                   <CategoryInput
                     type="text"
                     name="category"
+                    autocomplete="off"
                     value={values.category}
                     onClick={toggleMenu}
                     placeholder="Product category"

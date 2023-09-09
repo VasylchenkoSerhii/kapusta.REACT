@@ -6,6 +6,9 @@ export const TableList = styled.ul`
   overflow: hidden;
   overflow-y: scroll;
 `
+export const TableItem = styled.li`
+  list-style: none;
+`
 export const BlockTransaction = styled.div`
   display: flex;
   margin-left: 20px;
