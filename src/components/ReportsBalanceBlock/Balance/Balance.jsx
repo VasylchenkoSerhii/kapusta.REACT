@@ -16,7 +16,7 @@ export default function Balance() {
 
   const validationSchema = yup.object().shape({
     balance: yup
-      .number()
+      .string()
       .min(1, 'Balance should be at least 1 characters long')
       .required('Balance is required'),
   });
@@ -24,12 +24,13 @@ export default function Balance() {
   const initialValues = {
     balance: balanceRedux ?? '00.00',
   };
+
   useEffect(() => {
     localStorage.setItem('isSent', isSent); // Сохраняем значение isSent в localStorage
   }, [isSent]);
 
   useEffect(() => {
-    setInputValue(balanceRedux);
+    setInputValue(balanceRedux === 'null' ? '00.00' : balanceRedux);
     localStorage.setItem('balance', JSON.stringify(balanceRedux));
   }, [balanceRedux]);
 
