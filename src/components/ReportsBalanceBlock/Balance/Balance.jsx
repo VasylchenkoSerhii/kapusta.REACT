@@ -59,7 +59,7 @@ export default function Balance() {
         <InputBalance
           // mask={currencyMask}
           as={CurrencyInput}
-          type="number"
+          type="string"
           id="balance"
           name="balance"
           value={inputValue}
