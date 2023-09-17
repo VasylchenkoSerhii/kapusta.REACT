@@ -69,13 +69,13 @@ export const BlockProduct = styled.div`
     padding-left: 32px;
     padding-right: 32px;
   }
-`
+`;
 export const ContainerTablet = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
   top: 192px;
-`
+`;
 export const ContainerDesktop = styled.div`
   position: absolute;
   top: 136px;
@@ -83,5 +83,4 @@ export const ContainerDesktop = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-`
-
+`;

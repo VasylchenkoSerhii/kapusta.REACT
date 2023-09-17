@@ -9,6 +9,8 @@ export const Section = styled.section`
 
 export const CharContainer = styled.div`
   @media screen and (min-width: 769px) {
+    display: flex;
+    align-items: center;
     width: 704px;
     height: 422px;
     background: #ffffff;

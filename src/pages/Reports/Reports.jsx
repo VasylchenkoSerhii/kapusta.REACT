@@ -1,4 +1,4 @@
-import { Main } from './Reports.styled';
+import { Hero, Main } from './Reports.styled';
 import Categories from 'components/Categories/Categories';
 import BalanceSummary from 'components/BalanceSummary/BalanceSummary';
 import ExpenseChar from 'components/ExpenseChar/ExpenseChar';
@@ -30,14 +30,16 @@ export default function Reports() {
 
   return (
     <Main>
-      <BalanceSummary
-        expensesSum={expensesTotalSum || 0}
-        incomeSum={incomeTotalSum || 0}
-      />
-      {(expensesCategories || incomeCategories) && (
-        <Categories expenses={expensesCategories} income={incomeCategories} />
-      )}
-      {transactions && <ExpenseChar transactions={transactions} />}
+      <Hero>
+        <BalanceSummary
+          expensesSum={expensesTotalSum || 0}
+          incomeSum={incomeTotalSum || 0}
+        />
+        {(expensesCategories || incomeCategories) && (
+          <Categories expenses={expensesCategories} income={incomeCategories} />
+        )}
+        {transactions && <ExpenseChar transactions={transactions} />}
+      </Hero>
     </Main>
   );
 }

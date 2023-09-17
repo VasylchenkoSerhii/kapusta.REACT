@@ -23,7 +23,6 @@ import {
 export default function Categories({ expenses, income }) {
   const [activeCategory, setActiveCategory] = useState('expenses');
   const [firstCategorySelected, setFirstCategorySelected] = useState(false);
-
   const dispatch = useDispatch();
 
   const handleExpensesClick = () => {

@@ -56,10 +56,6 @@ export default function ExpenseChar({ transactions }) {
         },
         ticks: {
           display: isMobile ? false : true,
-          callback: (_, index) => {
-            const sum = sums[index];
-            return `${sum} UAH`;
-          },
         },
       },
       y: {
