@@ -136,6 +136,7 @@ export const GoogleBtn = styled.button`
 
 export const GoogleText = styled.span`
   margin-left: 10px;
+  color: black;
 `;
 
 export const WripperBtns = styled.div`

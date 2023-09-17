@@ -141,7 +141,7 @@ export const BalanceWrapper = styled.div`
   margin-right: auto;
   margin-bottom: 32px;
   text-align: center;
-  border: 2px solid #000000;
+  border: 2px solid #ffff;
   border-radius: 22px;
 
   @media screen and (min-width: 768px) {

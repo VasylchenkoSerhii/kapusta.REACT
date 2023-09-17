@@ -1,11 +1,33 @@
-import { Arrow, ButtonContainer, ButtonTo, CalculateInput, CalculatorContainer, CalculatorImage, CategoryContainer, CategoryImageDown, CategoryImageUp, CategoryInput, CategoryItem, CategoryList, ClearBtn, Error, Hero, InputBtn, MainForm, ProductContainer, ProductForm, ProductInput, ViewCalculator } from "./MobileProductPage.styled"
+import {
+  Arrow,
+  ButtonContainer,
+  ButtonTo,
+  CalculateInput,
+  CalculatorContainer,
+  CalculatorImage,
+  CategoryContainer,
+  CategoryImageDown,
+  CategoryImageUp,
+  CategoryInput,
+  CategoryItem,
+  CategoryList,
+  ClearBtn,
+  Error,
+  Hero,
+  InputBtn,
+  MainForm,
+  ProductContainer,
+  ProductForm,
+  ProductInput,
+  ViewCalculator,
+} from './MobileProductPage.styled';
 import Sprite from '../../images/sprite.svg';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
-import { Calculator } from "react-mac-calculator";
-import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTransaction } from "redux/report/report-operations";
+import { Calculator } from 'react-mac-calculator';
+import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTransaction } from 'redux/report/report-operations';
 
 export const MobileProductPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +43,7 @@ export const MobileProductPage = () => {
 
   const prevPage = () => {
     navigate(-1);
-  }
+  };
 
   const initialValues = {
     product: '',
@@ -29,7 +51,21 @@ export const MobileProductPage = () => {
     number: '',
   };
 
-  const categories = isIncome ? ['Salary', 'Income'] : ['Transport', 'Products', 'Health','Alcohol','Entertainment','Housing','Technique','Communal, communication','Sports, hobbies','Education','Other'];
+  const categories = isIncome
+    ? ['Salary', 'Income']
+    : [
+        'Transport',
+        'Products',
+        'Health',
+        'Alcohol',
+        'Entertainment',
+        'Housing',
+        'Technique',
+        'Communal, communication',
+        'Sports, hobbies',
+        'Education',
+        'Other',
+      ];
 
   const handleSubmit = async (values, { resetForm }) => {
     if (values) {
@@ -59,7 +95,7 @@ export const MobileProductPage = () => {
     toggleMenu();
   };
 
-  const handleNumberInputChange = (e) => {
+  const handleNumberInputChange = e => {
     setNumberValue(e.target.value);
   };
 
@@ -67,7 +103,7 @@ export const MobileProductPage = () => {
     setShowCalculator(!showCalculator);
   };
 
-  const handleCalculatorResult = (result) => {
+  const handleCalculatorResult = result => {
     setNumberValue(result);
   };
 
@@ -83,17 +119,17 @@ export const MobileProductPage = () => {
             <use xlinkHref={`${Sprite}#back-arrow`}></use>
           </Arrow>
         </ButtonTo>
-      <ProductForm>
-              <Formik
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                innerRef={formikRef}
-              >
-                {({ values, handleSubmit, handleChange, setFieldValue }) => (
-                <MainForm onSubmit={handleSubmit}>
-                  <ProductContainer>
+        <ProductForm>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            innerRef={formikRef}
+          >
+            {({ values, handleSubmit, handleChange, setFieldValue }) => (
+              <MainForm onSubmit={handleSubmit}>
+                <ProductContainer>
                   <ProductInput
-                    type="text"
+                    type='text'
                     name='product'
                     value={values.product}
                     onChange={handleChange}
@@ -101,33 +137,49 @@ export const MobileProductPage = () => {
                   />
                   <Error name='product' component='div' />
                   <CategoryContainer>
-                  <CategoryInput
-                    type="text"
-                    name="category"
-                    autocomplete="off"
-                    value={values.category}
-                    onClick={toggleMenu}
-                    placeholder="Product category"
-                  />
-                  <Error name='category' component='div' />
-                  {isRotated ? (
-                  <CategoryImageUp onClick={() => { toggleMenu(); handleIconClick()}}/>
-                  ) : (
-                  <CategoryImageDown onClick={() => { toggleMenu(); handleIconClick()}}/>
-                  )}
-                  <CategoryList>
-                    {isOpen && categories.map((category, index) => (
-                      <CategoryItem key={index} onClick={() => handleCategorySelect(category, setFieldValue)}>
-                        {category}
-                      </CategoryItem>
-                    ))}
-                  </CategoryList>
+                    <CategoryInput
+                      type='text'
+                      name='category'
+                      autocomplete='off'
+                      value={values.category}
+                      onClick={toggleMenu}
+                      placeholder='Product category'
+                    />
+                    <Error name='category' component='div' />
+                    {isRotated ? (
+                      <CategoryImageUp
+                        onClick={() => {
+                          toggleMenu();
+                          handleIconClick();
+                        }}
+                      />
+                    ) : (
+                      <CategoryImageDown
+                        onClick={() => {
+                          toggleMenu();
+                          handleIconClick();
+                        }}
+                      />
+                    )}
+                    <CategoryList>
+                      {isOpen &&
+                        categories.map((category, index) => (
+                          <CategoryItem
+                            key={index}
+                            onClick={() =>
+                              handleCategorySelect(category, setFieldValue)
+                            }
+                          >
+                            {category}
+                          </CategoryItem>
+                        ))}
+                    </CategoryList>
                   </CategoryContainer>
                   <CalculatorContainer>
                     <CalculateInput
-                      type="text"
-                      name="number"
-                      placeholder="0,00"
+                      type='text'
+                      name='number'
+                      placeholder='0,00'
                       value={values.number}
                       onChange={handleChange}
                     />
@@ -136,23 +188,23 @@ export const MobileProductPage = () => {
                   </CalculatorContainer>
                   {showCalculator && (
                     <ViewCalculator>
-                    <Calculator
-                      value={numberValue}
-                      onChange={handleNumberInputChange}
-                      onResult={handleCalculatorResult}
-                    />
+                      <Calculator
+                        value={numberValue}
+                        onChange={handleNumberInputChange}
+                        onResult={handleCalculatorResult}
+                      />
                     </ViewCalculator>
                   )}
-                  </ProductContainer>
-                  <ButtonContainer>
-                    <InputBtn type="submit">Input</InputBtn>
-                    <ClearBtn type="reset">Clear</ClearBtn>
-                  </ButtonContainer>
-                  </MainForm>
-                )}
-              </Formik>
-            </ProductForm>
+                </ProductContainer>
+                <ButtonContainer>
+                  <InputBtn type='submit'>Input</InputBtn>
+                  <ClearBtn type='reset'>Clear</ClearBtn>
+                </ButtonContainer>
+              </MainForm>
+            )}
+          </Formik>
+        </ProductForm>
       </Hero>
     </>
-  )
-}
+  );
+};

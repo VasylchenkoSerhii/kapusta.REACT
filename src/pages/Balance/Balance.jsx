@@ -1,5 +1,12 @@
-import React from 'react'
-import { BlockExpInc,BlockProduct, ContainerDesktop, ContainerTablet, Hero, Section } from './Balance.styled'
+import React from 'react';
+import {
+  BlockExpInc,
+  BlockProduct,
+  ContainerDesktop,
+  ContainerTablet,
+  Hero,
+  Section,
+} from './Balance.styled';
 // import { useState } from 'react';
 // import Calendar from 'react-calendar';
 // import { Calculator } from 'react-mac-calculator';
@@ -17,7 +24,7 @@ import { SummaryTable } from 'components/SummaryTable/SummaryTable';
 
 export default function Balance() {
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const isTablet = useMediaQuery({ minWidth: 767 } && { maxWidth: 1279});
+  const isTablet = useMediaQuery({ minWidth: 767 } && { maxWidth: 1279 });
 
   return (
     <Section>
@@ -35,25 +42,23 @@ export default function Balance() {
           <BlockExpInc>
             <div>
               <BlockProduct>
-                  <TabletForm />
-                  {!isTablet ? (
-                    <ContainerDesktop>
-                      <TabletTable />
-                      <SummaryTable />
-                    </ContainerDesktop>
-                  ) : (
-                    <ContainerTablet>
-                      <TabletTable />
-                    </ContainerTablet>
-                  )}
+                <TabletForm />
+                {!isTablet ? (
+                  <ContainerDesktop>
+                    <TabletTable />
+                    <SummaryTable />
+                  </ContainerDesktop>
+                ) : (
+                  <ContainerTablet>
+                    <TabletTable />
+                  </ContainerTablet>
+                )}
               </BlockProduct>
             </div>
           </BlockExpInc>
           {isTablet && <SummaryTable />}
         </Hero>
       )}
-
     </Section>
-  )
+  );
 }
-
